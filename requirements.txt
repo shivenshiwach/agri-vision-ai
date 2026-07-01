@@ -1,0 +1,15 @@
+fastapi
+uvicorn
+python-multipart
+pydantic
+pillow
+opencv-python
+numpy
+pandas
+pyyaml
+ultralytics
+torch
+torchvision
+pytest
+requests
+httpx2

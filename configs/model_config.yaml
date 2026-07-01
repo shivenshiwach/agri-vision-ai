@@ -1,0 +1,15 @@
+disease_model:
+  model_path: models/disease_model.pt
+  confidence_threshold: 0.5
+
+pest_model:
+  model_path: models/pest_model.pt
+  confidence_threshold: 0.5
+
+animal_model:
+  model_path: models/animal_model.pt
+  confidence_threshold: 0.5
+
+crop_model:
+  model_path: models/crop_model.pt
+  confidence_threshold: 0.5
