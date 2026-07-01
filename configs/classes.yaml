@@ -2,39 +2,156 @@ crops:
   - Cotton
   - Soybean
   - Sugarcane
-  - Paddy
+  - Paddy (Rice)
   - Wheat
+  - Jowar (Sorghum)
+  - Bajra (Pearl Millet)
+  - Maize
+  - Tur (Pigeon Pea)
+  - Gram (Chickpea)
+  - Green Gram (Moong)
+  - Groundnut
+  - Sunflower
   - Grapes
   - Pomegranate
+  - Mango
   - Banana
-  - Onion
+  - Citrus
   - Tomato
   - Chilli
+  - Onion
+  - Potato
+  - Brinjal
+  - Okra
+  - Cabbage
+  - Coconut
+  - Arecanut
+  - Turmeric
+  - Ginger
+  - Rose
 
 pests:
   - Pink Bollworm
+  - Spotted Bollworm
   - Whitefly
   - Aphids
   - Thrips
-  - Stem Borer
-  - Fruit Borer
+  - Jassids
   - Mealybugs
+  - Stem Fly
+  - Girdle Beetle
+  - Tobacco Caterpillar
+  - Semilooper
+  - White Grub
+  - Early Shoot Borer
+  - Top Borer
+  - Pyrilla
+  - Woolly Aphid
+  - Stem Borer
+  - Brown Plant Hopper
+  - Leaf Folder
+  - Rice Hispa
+  - Gall Midge
+  - Armyworm
+  - Termites
+  - Shoot Fly
+  - Grasshoppers
+  - Fall Armyworm
+  - Pod Borer
+  - Plume Moth
+  - Cutworm
+  - Leaf Miner
+  - Head Borer
+  - Flea Beetle
+  - Fruit Borer
+  - Fruit Fly
+  - Hopper
+  - Rhizome Weevil
+  - Nematodes
+  - Citrus Psylla
+  - Black Fly
+  - Mites
+  - Onion Maggot
+  - Shoot & Fruit Borer
+  - Diamondback Moth
+  - Rhinoceros Beetle
+  - Red Palm Weevil
+  - Spindle Bug
+  - Shoot Borer
+  - Scale Insects
+  - Rice Weevil
+  - Lesser Grain Borer
+  - Flour Beetle
+  - Grain Moth
+  - Tribolium Beetles
 
 diseases:
   - Wilt
   - Leaf Curl Virus
   - Bacterial Blight
+  - Grey Mildew
   - Rust
-  - Powdery Mildew
+  - Yellow Mosaic Virus
+  - Anthracnose
+  - Red Rot
+  - Smut
+  - Grassy Shoot Disease
+  - Blast Disease
+  - Bacterial Leaf Blight
+  - Sheath Blight
+  - Loose Smut
+  - Karnal Bunt
+  - Grain Smut
   - Downy Mildew
+  - Ergot
+  - Leaf Blight
+  - Sterility Mosaic Disease
+  - Dry Root Rot
+  - Cercospora Leaf Spot
+  - Tikka Disease
+  - Collar Rot
+  - Alternaria Blight
+  - Necrosis
+  - Powdery Mildew
+  - Panama Wilt
+  - Sigatoka Disease
+  - Bunchy Top Virus
+  - Citrus Canker
+  - Gummosis
   - Early Blight
   - Late Blight
+  - Purple Blotch
+  - Stemphylium Blight
+  - Phomopsis Blight
+  - Yellow Vein Mosaic Virus
+  - Black Rot
+  - Bud Rot
+  - Yellow Leaf Disease
+  - Rhizome Rot
+  - Leaf Spot
+  - Soft Rot
+  - Bacterial Wilt
+  - Black Spot
+  - Fungal Storage Rot
+  - Mold/Fungal Contamination
 
 animals:
   - Wild Boar
   - Nilgai
   - Monkeys
-  - Rats
-  - Birds
+  - Deer
+  - Rabbits
   - Porcupine
+  - Bats
+
+birds:
+  - Birds
+  - Parrots
+  - Sparrows
+
+rodents:
+  - Rats
+  - Bandicoot Rats
+
+reptiles:
   - Snakes

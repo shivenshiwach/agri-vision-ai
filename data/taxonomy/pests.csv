@@ -1,0 +1,54 @@
+class_name,category,dataset_available,suggested_source,custom_data_required
+Pink Bollworm,pest,Partial,IP102; Roboflow; iNaturalist,Yes
+Spotted Bollworm,pest,Partial,IP102; Roboflow; iNaturalist,Yes
+Whitefly,pest,Partial,IP102; Roboflow; iNaturalist,Yes
+Aphids,pest,Partial,IP102; Roboflow; iNaturalist,Yes
+Thrips,pest,Partial,IP102; Roboflow; iNaturalist,Yes
+Jassids,pest,Partial,IP102; Roboflow; iNaturalist,Yes
+Mealybugs,pest,Partial,IP102; Roboflow; iNaturalist,Yes
+Stem Fly,pest,Partial,IP102; Roboflow; iNaturalist,Yes
+Girdle Beetle,pest,No,Custom field collection; Roboflow search,Yes
+Tobacco Caterpillar,pest,Partial,IP102; Roboflow; iNaturalist,Yes
+Semilooper,pest,No,Custom field collection; iNaturalist reference,Yes
+White Grub,pest,Partial,IP102; Roboflow; iNaturalist,Yes
+Early Shoot Borer,pest,Partial,IP102; Roboflow; iNaturalist,Yes
+Top Borer,pest,Partial,IP102; Roboflow; iNaturalist,Yes
+Pyrilla,pest,No,Custom field collection; iNaturalist reference,Yes
+Woolly Aphid,pest,No,Custom field collection; iNaturalist reference,Yes
+Stem Borer,pest,Partial,IP102; Roboflow; iNaturalist,Yes
+Brown Plant Hopper,pest,Partial,IP102; Roboflow; iNaturalist,Yes
+Leaf Folder,pest,Partial,IP102; Roboflow; iNaturalist,Yes
+Rice Hispa,pest,Partial,IP102; Roboflow; iNaturalist,Yes
+Gall Midge,pest,No,Custom field collection; iNaturalist reference,Yes
+Armyworm,pest,Partial,IP102; Roboflow; iNaturalist,Yes
+Termites,pest,Partial,IP102; Roboflow; iNaturalist,Yes
+Shoot Fly,pest,Partial,IP102; Roboflow; iNaturalist,Yes
+Grasshoppers,pest,Partial,IP102; Roboflow; iNaturalist,Yes
+Fall Armyworm,pest,Partial,IP102; Roboflow; iNaturalist,Yes
+Pod Borer,pest,Partial,IP102; Roboflow; iNaturalist,Yes
+Plume Moth,pest,No,Custom field collection; iNaturalist reference,Yes
+Cutworm,pest,Partial,IP102; Roboflow; iNaturalist,Yes
+Leaf Miner,pest,Partial,IP102; Roboflow; iNaturalist,Yes
+Head Borer,pest,Partial,IP102; Roboflow; iNaturalist,Yes
+Flea Beetle,pest,Partial,IP102; Roboflow; iNaturalist,Yes
+Fruit Borer,pest,Partial,IP102; Roboflow; iNaturalist,Yes
+Fruit Fly,pest,Partial,IP102; Roboflow; iNaturalist,Yes
+Hopper,pest,Partial,IP102; Roboflow; iNaturalist,Yes
+Rhizome Weevil,pest,Partial,IP102; Roboflow; iNaturalist,Yes
+Nematodes,pest,Partial,Roboflow; custom microscopy/field dataset,Yes
+Citrus Psylla,pest,No,Custom field collection; iNaturalist reference,Yes
+Black Fly,pest,Partial,IP102; Roboflow; iNaturalist,Yes
+Mites,pest,Partial,IP102; Roboflow; iNaturalist,Yes
+Onion Maggot,pest,No,Custom field collection; iNaturalist reference,Yes
+Shoot & Fruit Borer,pest,Partial,IP102; Roboflow; iNaturalist,Yes
+Diamondback Moth,pest,Partial,IP102; Roboflow; iNaturalist,Yes
+Rhinoceros Beetle,pest,Partial,IP102; Roboflow; iNaturalist,Yes
+Red Palm Weevil,pest,Partial,IP102; Roboflow; iNaturalist,Yes
+Spindle Bug,pest,No,Custom field collection; iNaturalist reference,Yes
+Shoot Borer,pest,Partial,IP102; Roboflow; iNaturalist,Yes
+Scale Insects,pest,No,Custom field collection; iNaturalist reference,Yes
+Rice Weevil,pest,Partial,IP102; Roboflow; iNaturalist,Yes
+Lesser Grain Borer,pest,Partial,IP102; Roboflow; iNaturalist,Yes
+Flour Beetle,pest,Partial,IP102; Roboflow; iNaturalist,Yes
+Grain Moth,pest,Partial,IP102; Roboflow; iNaturalist,Yes
+Tribolium Beetles,pest,No,Custom storage dataset; iNaturalist reference,Yes

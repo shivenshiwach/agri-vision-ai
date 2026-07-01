@@ -1,0 +1,145 @@
+class_name,category,target_model,dataset_available,suggested_source,custom_data_required,source_context
+Cotton,crop,crop_classifier,Partial,PlantDoc; Roboflow; Open Images,Yes,Maharashtra crop table
+Soybean,crop,crop_classifier,Partial,PlantDoc; Roboflow; Open Images,Yes,Maharashtra crop table
+Sugarcane,crop,crop_classifier,Partial,PlantDoc; Roboflow; Open Images,Yes,Maharashtra crop table
+Paddy (Rice),crop,crop_classifier,Partial,PlantDoc; Roboflow; Open Images,Yes,Maharashtra crop table
+Wheat,crop,crop_classifier,Partial,PlantDoc; Roboflow; Open Images,Yes,Maharashtra crop table
+Jowar (Sorghum),crop,crop_classifier,Partial,Roboflow; Open Images,Yes,Maharashtra crop table
+Bajra (Pearl Millet),crop,crop_classifier,Partial,Roboflow; Open Images,Yes,Maharashtra crop table
+Maize,crop,crop_classifier,Partial,PlantDoc; Roboflow; Open Images,Yes,Maharashtra crop table
+Tur (Pigeon Pea),crop,crop_classifier,Partial,Roboflow; Open Images,Yes,Maharashtra crop table
+Gram (Chickpea),crop,crop_classifier,Partial,PlantDoc; Roboflow; Open Images,Yes,Maharashtra crop table
+Green Gram (Moong),crop,crop_classifier,Partial,Roboflow; Open Images,Yes,Maharashtra crop table
+Groundnut,crop,crop_classifier,Partial,PlantDoc; Roboflow; Open Images,Yes,Maharashtra crop table
+Sunflower,crop,crop_classifier,Partial,Roboflow; Open Images,Yes,Maharashtra crop table
+Grapes,crop,crop_classifier,Partial,PlantDoc; Roboflow; Open Images,Yes,Maharashtra crop table
+Pomegranate,crop,crop_classifier,Partial,PlantDoc; Roboflow; Open Images,Yes,Maharashtra crop table
+Mango,crop,crop_classifier,Partial,PlantDoc; Roboflow; Open Images,Yes,Maharashtra crop table
+Banana,crop,crop_classifier,Partial,PlantDoc; Roboflow; Open Images,Yes,Maharashtra crop table
+Citrus,crop,crop_classifier,Partial,PlantDoc; Roboflow; Open Images,Yes,Maharashtra crop table
+Tomato,crop,crop_classifier,Partial,PlantVillage; PlantDoc; Roboflow,Yes,Maharashtra crop table
+Chilli,crop,crop_classifier,Partial,PlantDoc; Roboflow; Open Images,Yes,Maharashtra crop table
+Onion,crop,crop_classifier,Partial,PlantDoc; Roboflow; Open Images,Yes,Maharashtra crop table
+Potato,crop,crop_classifier,Partial,PlantVillage; PlantDoc; Roboflow,Yes,Maharashtra crop table
+Brinjal,crop,crop_classifier,Partial,PlantDoc; Roboflow; Open Images,Yes,Maharashtra crop table
+Okra,crop,crop_classifier,Partial,PlantDoc; Roboflow; Open Images,Yes,Maharashtra crop table
+Cabbage,crop,crop_classifier,Partial,PlantVillage; PlantDoc; Roboflow,Yes,Maharashtra crop table
+Coconut,crop,crop_classifier,Partial,Roboflow; Open Images,Yes,Maharashtra crop table
+Arecanut,crop,crop_classifier,Partial,Roboflow; Open Images,Yes,Maharashtra crop table
+Turmeric,crop,crop_classifier,Partial,Roboflow; Open Images,Yes,Maharashtra crop table
+Ginger,crop,crop_classifier,Partial,Roboflow; Open Images,Yes,Maharashtra crop table
+Rose,crop,crop_classifier,Partial,PlantDoc; Roboflow; Open Images,Yes,Maharashtra crop table
+Pink Bollworm,pest,pest_detector,Partial,IP102; Roboflow; iNaturalist,Yes,Maharashtra pest table
+Spotted Bollworm,pest,pest_detector,Partial,IP102; Roboflow; iNaturalist,Yes,Maharashtra pest table
+Whitefly,pest,pest_detector,Partial,IP102; Roboflow; iNaturalist,Yes,Maharashtra pest table
+Aphids,pest,pest_detector,Partial,IP102; Roboflow; iNaturalist,Yes,Maharashtra pest table
+Thrips,pest,pest_detector,Partial,IP102; Roboflow; iNaturalist,Yes,Maharashtra pest table
+Jassids,pest,pest_detector,Partial,IP102; Roboflow; iNaturalist,Yes,Maharashtra pest table
+Mealybugs,pest,pest_detector,Partial,IP102; Roboflow; iNaturalist,Yes,Maharashtra pest table
+Stem Fly,pest,pest_detector,Partial,IP102; Roboflow; iNaturalist,Yes,Maharashtra pest table
+Girdle Beetle,pest,pest_detector,No,Custom field collection; Roboflow search,Yes,Maharashtra pest table
+Tobacco Caterpillar,pest,pest_detector,Partial,IP102; Roboflow; iNaturalist,Yes,Maharashtra pest table
+Semilooper,pest,pest_detector,No,Custom field collection; iNaturalist reference,Yes,Maharashtra pest table
+White Grub,pest,pest_detector,Partial,IP102; Roboflow; iNaturalist,Yes,Maharashtra pest table
+Early Shoot Borer,pest,pest_detector,Partial,IP102; Roboflow; iNaturalist,Yes,Maharashtra pest table
+Top Borer,pest,pest_detector,Partial,IP102; Roboflow; iNaturalist,Yes,Maharashtra pest table
+Pyrilla,pest,pest_detector,No,Custom field collection; iNaturalist reference,Yes,Maharashtra pest table
+Woolly Aphid,pest,pest_detector,No,Custom field collection; iNaturalist reference,Yes,Maharashtra pest table
+Stem Borer,pest,pest_detector,Partial,IP102; Roboflow; iNaturalist,Yes,Maharashtra pest table
+Brown Plant Hopper,pest,pest_detector,Partial,IP102; Roboflow; iNaturalist,Yes,Maharashtra pest table
+Leaf Folder,pest,pest_detector,Partial,IP102; Roboflow; iNaturalist,Yes,Maharashtra pest table
+Rice Hispa,pest,pest_detector,Partial,IP102; Roboflow; iNaturalist,Yes,Maharashtra pest table
+Gall Midge,pest,pest_detector,No,Custom field collection; iNaturalist reference,Yes,Maharashtra pest table
+Armyworm,pest,pest_detector,Partial,IP102; Roboflow; iNaturalist,Yes,Maharashtra pest table
+Termites,pest,pest_detector,Partial,IP102; Roboflow; iNaturalist,Yes,Maharashtra pest table
+Shoot Fly,pest,pest_detector,Partial,IP102; Roboflow; iNaturalist,Yes,Maharashtra pest table
+Grasshoppers,pest,pest_detector,Partial,IP102; Roboflow; iNaturalist,Yes,Maharashtra pest table
+Fall Armyworm,pest,pest_detector,Partial,IP102; Roboflow; iNaturalist,Yes,Maharashtra pest table
+Pod Borer,pest,pest_detector,Partial,IP102; Roboflow; iNaturalist,Yes,Maharashtra pest table
+Plume Moth,pest,pest_detector,No,Custom field collection; iNaturalist reference,Yes,Maharashtra pest table
+Cutworm,pest,pest_detector,Partial,IP102; Roboflow; iNaturalist,Yes,Maharashtra pest table
+Leaf Miner,pest,pest_detector,Partial,IP102; Roboflow; iNaturalist,Yes,Maharashtra pest table
+Head Borer,pest,pest_detector,Partial,IP102; Roboflow; iNaturalist,Yes,Maharashtra pest table
+Flea Beetle,pest,pest_detector,Partial,IP102; Roboflow; iNaturalist,Yes,Maharashtra pest table
+Fruit Borer,pest,pest_detector,Partial,IP102; Roboflow; iNaturalist,Yes,Maharashtra pest table
+Fruit Fly,pest,pest_detector,Partial,IP102; Roboflow; iNaturalist,Yes,Maharashtra pest table
+Hopper,pest,pest_detector,Partial,IP102; Roboflow; iNaturalist,Yes,Maharashtra pest table
+Rhizome Weevil,pest,pest_detector,Partial,IP102; Roboflow; iNaturalist,Yes,Maharashtra pest table
+Nematodes,pest,pest_detector,Partial,Roboflow; custom microscopy/field dataset,Yes,Maharashtra pest table
+Citrus Psylla,pest,pest_detector,No,Custom field collection; iNaturalist reference,Yes,Maharashtra pest table
+Black Fly,pest,pest_detector,Partial,IP102; Roboflow; iNaturalist,Yes,Maharashtra pest table
+Mites,pest,pest_detector,Partial,IP102; Roboflow; iNaturalist,Yes,Maharashtra pest table
+Onion Maggot,pest,pest_detector,No,Custom field collection; iNaturalist reference,Yes,Maharashtra pest table
+Shoot & Fruit Borer,pest,pest_detector,Partial,IP102; Roboflow; iNaturalist,Yes,Maharashtra pest table
+Diamondback Moth,pest,pest_detector,Partial,IP102; Roboflow; iNaturalist,Yes,Maharashtra pest table
+Rhinoceros Beetle,pest,pest_detector,Partial,IP102; Roboflow; iNaturalist,Yes,Maharashtra pest table
+Red Palm Weevil,pest,pest_detector,Partial,IP102; Roboflow; iNaturalist,Yes,Maharashtra pest table
+Spindle Bug,pest,pest_detector,No,Custom field collection; iNaturalist reference,Yes,Maharashtra pest table
+Shoot Borer,pest,pest_detector,Partial,IP102; Roboflow; iNaturalist,Yes,Maharashtra pest table
+Scale Insects,pest,pest_detector,No,Custom field collection; iNaturalist reference,Yes,Maharashtra pest table
+Rice Weevil,pest,pest_detector,Partial,IP102; Roboflow; iNaturalist,Yes,Maharashtra storage pest table
+Lesser Grain Borer,pest,pest_detector,Partial,IP102; Roboflow; iNaturalist,Yes,Maharashtra storage pest table
+Flour Beetle,pest,pest_detector,Partial,IP102; Roboflow; iNaturalist,Yes,Maharashtra storage pest table
+Grain Moth,pest,pest_detector,Partial,IP102; Roboflow; iNaturalist,Yes,Maharashtra storage pest table
+Tribolium Beetles,pest,pest_detector,No,Custom storage dataset; iNaturalist reference,Yes,Maharashtra storage pest table
+Wilt,disease,disease_detector,Partial,PlantVillage; PlantDoc; Roboflow,Yes,Maharashtra disease table
+Leaf Curl Virus,disease,disease_detector,Partial,PlantVillage; PlantDoc; Roboflow,Yes,Maharashtra disease table
+Bacterial Blight,disease,disease_detector,Partial,PlantVillage; PlantDoc; Roboflow,Yes,Maharashtra disease table
+Grey Mildew,disease,disease_detector,No,Custom field collection; PlantDoc search,Yes,Maharashtra disease table
+Rust,disease,disease_detector,Partial,PlantVillage; PlantDoc; Roboflow,Yes,Maharashtra disease table
+Yellow Mosaic Virus,disease,disease_detector,Partial,PlantVillage; PlantDoc; Roboflow,Yes,Maharashtra disease table
+Anthracnose,disease,disease_detector,Partial,PlantVillage; PlantDoc; Roboflow,Yes,Maharashtra disease table
+Red Rot,disease,disease_detector,Partial,PlantDoc; Roboflow,Yes,Maharashtra disease table
+Smut,disease,disease_detector,Partial,PlantDoc; Roboflow,Yes,Maharashtra disease table
+Grassy Shoot Disease,disease,disease_detector,No,Custom field collection; PlantDoc search,Yes,Maharashtra disease table
+Blast Disease,disease,disease_detector,Partial,PlantVillage; PlantDoc; Roboflow,Yes,Maharashtra disease table
+Bacterial Leaf Blight,disease,disease_detector,Partial,PlantVillage; PlantDoc; Roboflow,Yes,Maharashtra disease table
+Sheath Blight,disease,disease_detector,Partial,PlantVillage; PlantDoc; Roboflow,Yes,Maharashtra disease table
+Loose Smut,disease,disease_detector,Partial,PlantDoc; Roboflow,Yes,Maharashtra disease table
+Karnal Bunt,disease,disease_detector,No,Custom field collection; PlantDoc search,Yes,Maharashtra disease table
+Grain Smut,disease,disease_detector,Partial,PlantDoc; Roboflow,Yes,Maharashtra disease table
+Downy Mildew,disease,disease_detector,Partial,PlantVillage; PlantDoc; Roboflow,Yes,Maharashtra disease table
+Ergot,disease,disease_detector,Partial,PlantDoc; Roboflow,Yes,Maharashtra disease table
+Leaf Blight,disease,disease_detector,Partial,PlantVillage; PlantDoc; Roboflow,Yes,Maharashtra disease table
+Sterility Mosaic Disease,disease,disease_detector,No,Custom field collection; PlantDoc search,Yes,Maharashtra disease table
+Dry Root Rot,disease,disease_detector,No,Custom field collection; PlantDoc search,Yes,Maharashtra disease table
+Cercospora Leaf Spot,disease,disease_detector,Partial,PlantVillage; PlantDoc; Roboflow,Yes,Maharashtra disease table
+Tikka Disease,disease,disease_detector,No,Custom field collection; PlantDoc search,Yes,Maharashtra disease table
+Collar Rot,disease,disease_detector,No,Custom field collection; PlantDoc search,Yes,Maharashtra disease table
+Alternaria Blight,disease,disease_detector,Partial,PlantVillage; PlantDoc; Roboflow,Yes,Maharashtra disease table
+Necrosis,disease,disease_detector,No,Custom field collection; PlantDoc search,Yes,Maharashtra disease table
+Powdery Mildew,disease,disease_detector,Partial,PlantVillage; PlantDoc; Roboflow,Yes,Maharashtra disease table
+Panama Wilt,disease,disease_detector,Partial,PlantDoc; Roboflow,Yes,Maharashtra disease table
+Sigatoka Disease,disease,disease_detector,Partial,PlantVillage; PlantDoc; Roboflow,Yes,Maharashtra disease table
+Bunchy Top Virus,disease,disease_detector,Partial,PlantDoc; Roboflow,Yes,Maharashtra disease table
+Citrus Canker,disease,disease_detector,Partial,PlantVillage; PlantDoc; Roboflow,Yes,Maharashtra disease table
+Gummosis,disease,disease_detector,No,Custom field collection; PlantDoc search,Yes,Maharashtra disease table
+Early Blight,disease,disease_detector,Partial,PlantVillage; PlantDoc; Roboflow,Yes,Maharashtra disease table
+Late Blight,disease,disease_detector,Partial,PlantVillage; PlantDoc; Roboflow,Yes,Maharashtra disease table
+Purple Blotch,disease,disease_detector,Partial,PlantDoc; Roboflow,Yes,Maharashtra disease table
+Stemphylium Blight,disease,disease_detector,No,Custom field collection; PlantDoc search,Yes,Maharashtra disease table
+Phomopsis Blight,disease,disease_detector,No,Custom field collection; PlantDoc search,Yes,Maharashtra disease table
+Yellow Vein Mosaic Virus,disease,disease_detector,Partial,PlantVillage; PlantDoc; Roboflow,Yes,Maharashtra disease table
+Black Rot,disease,disease_detector,Partial,PlantVillage; PlantDoc; Roboflow,Yes,Maharashtra disease table
+Bud Rot,disease,disease_detector,Partial,PlantDoc; Roboflow,Yes,Maharashtra disease table
+Yellow Leaf Disease,disease,disease_detector,No,Custom field collection; PlantDoc search,Yes,Maharashtra disease table
+Rhizome Rot,disease,disease_detector,No,Custom field collection; PlantDoc search,Yes,Maharashtra disease table
+Leaf Spot,disease,disease_detector,Partial,PlantVillage; PlantDoc; Roboflow,Yes,Maharashtra disease table
+Soft Rot,disease,disease_detector,Partial,PlantVillage; PlantDoc; Roboflow,Yes,Maharashtra disease table
+Bacterial Wilt,disease,disease_detector,Partial,PlantVillage; PlantDoc; Roboflow,Yes,Maharashtra disease table
+Black Spot,disease,disease_detector,Partial,PlantVillage; PlantDoc; Roboflow,Yes,Maharashtra disease table
+Fungal Storage Rot,disease,disease_detector,No,Custom storage dataset; PlantDoc search,Yes,Maharashtra storage disease table
+Mold/Fungal Contamination,disease,disease_detector,No,Custom storage dataset; Roboflow search,Yes,Maharashtra storage disease table
+Wild Boar,animal,animal_detector,Partial,iNaturalist; Open Images; Roboflow,Yes,Maharashtra animal problem table
+Nilgai,animal,animal_detector,Partial,iNaturalist; Open Images; Roboflow,Yes,Maharashtra animal problem table
+Monkeys,animal,animal_detector,Partial,iNaturalist; Open Images; Roboflow,Yes,Maharashtra animal problem table
+Deer,animal,animal_detector,Partial,iNaturalist; Open Images; Roboflow,Yes,Maharashtra animal problem table
+Rabbits,animal,animal_detector,Partial,iNaturalist; Open Images; Roboflow,Yes,Maharashtra animal problem table
+Porcupine,animal,animal_detector,Partial,iNaturalist; Open Images; Roboflow,Yes,Maharashtra animal problem table
+Bats,animal,animal_detector,Partial,iNaturalist; Open Images; Roboflow,Yes,Maharashtra animal problem table
+Birds,bird,animal_detector,Partial,Open Images; Roboflow; iNaturalist,Yes,Maharashtra bird problem table
+Parrots,bird,animal_detector,Partial,iNaturalist; Open Images; Roboflow,Yes,Maharashtra bird problem table
+Sparrows,bird,animal_detector,Partial,iNaturalist; Open Images; Roboflow,Yes,Maharashtra bird problem table
+Rats,rodent,animal_detector,Partial,iNaturalist; Open Images; Roboflow,Yes,Maharashtra storage animal table
+Bandicoot Rats,rodent,animal_detector,Partial,iNaturalist; Open Images; Roboflow,Yes,Maharashtra storage animal table
+Snakes,reptile,animal_detector,Partial,iNaturalist; Open Images; Roboflow,Yes,Maharashtra safety table

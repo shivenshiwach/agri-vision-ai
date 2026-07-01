@@ -1,0 +1,31 @@
+sources:
+  PlantVillage:
+    status: planned
+    primary_use: crop disease classification baseline
+    expected_coverage: common crop leaf diseases
+    notes: Use only after license and class mapping review.
+  IP102:
+    status: planned
+    primary_use: insect pest classification and pretraining
+    expected_coverage: common agricultural insect pests
+    notes: Map insect labels carefully to Maharashtra pest names.
+  PlantDoc:
+    status: planned
+    primary_use: crop disease detection and field-image validation
+    expected_coverage: crop leaves and visible disease symptoms
+    notes: Useful for more realistic images than lab-only datasets.
+  Roboflow:
+    status: planned
+    primary_use: public object detection datasets and annotation formats
+    expected_coverage: mixed crop, pest, disease, and animal datasets
+    notes: Review licenses and dataset quality before download.
+  iNaturalist:
+    status: planned
+    primary_use: wildlife, bird, rodent, reptile, and insect reference imagery
+    expected_coverage: species-level image classification
+    notes: Needs field-context custom data for farm intrusion detection.
+  Open Images:
+    status: planned
+    primary_use: general object detection pretraining and animal/crop coverage
+    expected_coverage: generic objects, animals, birds, and some crops
+    notes: Use as a weak baseline source, not a replacement for farm images.

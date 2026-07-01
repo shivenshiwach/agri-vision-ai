@@ -1,0 +1,31 @@
+class_name,category,dataset_available,suggested_source,custom_data_required
+Cotton,crop,Partial,PlantDoc; Roboflow; Open Images,Yes
+Soybean,crop,Partial,PlantDoc; Roboflow; Open Images,Yes
+Sugarcane,crop,Partial,PlantDoc; Roboflow; Open Images,Yes
+Paddy (Rice),crop,Partial,PlantDoc; Roboflow; Open Images,Yes
+Wheat,crop,Partial,PlantDoc; Roboflow; Open Images,Yes
+Jowar (Sorghum),crop,Partial,Roboflow; Open Images,Yes
+Bajra (Pearl Millet),crop,Partial,Roboflow; Open Images,Yes
+Maize,crop,Partial,PlantDoc; Roboflow; Open Images,Yes
+Tur (Pigeon Pea),crop,Partial,Roboflow; Open Images,Yes
+Gram (Chickpea),crop,Partial,PlantDoc; Roboflow; Open Images,Yes
+Green Gram (Moong),crop,Partial,Roboflow; Open Images,Yes
+Groundnut,crop,Partial,PlantDoc; Roboflow; Open Images,Yes
+Sunflower,crop,Partial,Roboflow; Open Images,Yes
+Grapes,crop,Partial,PlantDoc; Roboflow; Open Images,Yes
+Pomegranate,crop,Partial,PlantDoc; Roboflow; Open Images,Yes
+Mango,crop,Partial,PlantDoc; Roboflow; Open Images,Yes
+Banana,crop,Partial,PlantDoc; Roboflow; Open Images,Yes
+Citrus,crop,Partial,PlantDoc; Roboflow; Open Images,Yes
+Tomato,crop,Partial,PlantVillage; PlantDoc; Roboflow,Yes
+Chilli,crop,Partial,PlantDoc; Roboflow; Open Images,Yes
+Onion,crop,Partial,PlantDoc; Roboflow; Open Images,Yes
+Potato,crop,Partial,PlantVillage; PlantDoc; Roboflow,Yes
+Brinjal,crop,Partial,PlantDoc; Roboflow; Open Images,Yes
+Okra,crop,Partial,PlantDoc; Roboflow; Open Images,Yes
+Cabbage,crop,Partial,PlantVillage; PlantDoc; Roboflow,Yes
+Coconut,crop,Partial,Roboflow; Open Images,Yes
+Arecanut,crop,Partial,Roboflow; Open Images,Yes
+Turmeric,crop,Partial,Roboflow; Open Images,Yes
+Ginger,crop,Partial,Roboflow; Open Images,Yes
+Rose,crop,Partial,PlantDoc; Roboflow; Open Images,Yes

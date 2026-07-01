@@ -1,0 +1,14 @@
+class_name,category,dataset_available,suggested_source,custom_data_required
+Wild Boar,animal,Partial,iNaturalist; Open Images; Roboflow,Yes
+Nilgai,animal,Partial,iNaturalist; Open Images; Roboflow,Yes
+Monkeys,animal,Partial,iNaturalist; Open Images; Roboflow,Yes
+Deer,animal,Partial,iNaturalist; Open Images; Roboflow,Yes
+Rabbits,animal,Partial,iNaturalist; Open Images; Roboflow,Yes
+Porcupine,animal,Partial,iNaturalist; Open Images; Roboflow,Yes
+Bats,animal,Partial,iNaturalist; Open Images; Roboflow,Yes
+Birds,bird,Partial,Open Images; Roboflow; iNaturalist,Yes
+Parrots,bird,Partial,iNaturalist; Open Images; Roboflow,Yes
+Sparrows,bird,Partial,iNaturalist; Open Images; Roboflow,Yes
+Rats,rodent,Partial,iNaturalist; Open Images; Roboflow,Yes
+Bandicoot Rats,rodent,Partial,iNaturalist; Open Images; Roboflow,Yes
+Snakes,reptile,Partial,iNaturalist; Open Images; Roboflow,Yes

@@ -1,0 +1,49 @@
+class_name,category,dataset_available,suggested_source,custom_data_required
+Wilt,disease,Partial,PlantVillage; PlantDoc; Roboflow,Yes
+Leaf Curl Virus,disease,Partial,PlantVillage; PlantDoc; Roboflow,Yes
+Bacterial Blight,disease,Partial,PlantVillage; PlantDoc; Roboflow,Yes
+Grey Mildew,disease,No,Custom field collection; PlantDoc search,Yes
+Rust,disease,Partial,PlantVillage; PlantDoc; Roboflow,Yes
+Yellow Mosaic Virus,disease,Partial,PlantVillage; PlantDoc; Roboflow,Yes
+Anthracnose,disease,Partial,PlantVillage; PlantDoc; Roboflow,Yes
+Red Rot,disease,Partial,PlantDoc; Roboflow,Yes
+Smut,disease,Partial,PlantDoc; Roboflow,Yes
+Grassy Shoot Disease,disease,No,Custom field collection; PlantDoc search,Yes
+Blast Disease,disease,Partial,PlantVillage; PlantDoc; Roboflow,Yes
+Bacterial Leaf Blight,disease,Partial,PlantVillage; PlantDoc; Roboflow,Yes
+Sheath Blight,disease,Partial,PlantVillage; PlantDoc; Roboflow,Yes
+Loose Smut,disease,Partial,PlantDoc; Roboflow,Yes
+Karnal Bunt,disease,No,Custom field collection; PlantDoc search,Yes
+Grain Smut,disease,Partial,PlantDoc; Roboflow,Yes
+Downy Mildew,disease,Partial,PlantVillage; PlantDoc; Roboflow,Yes
+Ergot,disease,Partial,PlantDoc; Roboflow,Yes
+Leaf Blight,disease,Partial,PlantVillage; PlantDoc; Roboflow,Yes
+Sterility Mosaic Disease,disease,No,Custom field collection; PlantDoc search,Yes
+Dry Root Rot,disease,No,Custom field collection; PlantDoc search,Yes
+Cercospora Leaf Spot,disease,Partial,PlantVillage; PlantDoc; Roboflow,Yes
+Tikka Disease,disease,No,Custom field collection; PlantDoc search,Yes
+Collar Rot,disease,No,Custom field collection; PlantDoc search,Yes
+Alternaria Blight,disease,Partial,PlantVillage; PlantDoc; Roboflow,Yes
+Necrosis,disease,No,Custom field collection; PlantDoc search,Yes
+Powdery Mildew,disease,Partial,PlantVillage; PlantDoc; Roboflow,Yes
+Panama Wilt,disease,Partial,PlantDoc; Roboflow,Yes
+Sigatoka Disease,disease,Partial,PlantVillage; PlantDoc; Roboflow,Yes
+Bunchy Top Virus,disease,Partial,PlantDoc; Roboflow,Yes
+Citrus Canker,disease,Partial,PlantVillage; PlantDoc; Roboflow,Yes
+Gummosis,disease,No,Custom field collection; PlantDoc search,Yes
+Early Blight,disease,Partial,PlantVillage; PlantDoc; Roboflow,Yes
+Late Blight,disease,Partial,PlantVillage; PlantDoc; Roboflow,Yes
+Purple Blotch,disease,Partial,PlantDoc; Roboflow,Yes
+Stemphylium Blight,disease,No,Custom field collection; PlantDoc search,Yes
+Phomopsis Blight,disease,No,Custom field collection; PlantDoc search,Yes
+Yellow Vein Mosaic Virus,disease,Partial,PlantVillage; PlantDoc; Roboflow,Yes
+Black Rot,disease,Partial,PlantVillage; PlantDoc; Roboflow,Yes
+Bud Rot,disease,Partial,PlantDoc; Roboflow,Yes
+Yellow Leaf Disease,disease,No,Custom field collection; PlantDoc search,Yes
+Rhizome Rot,disease,No,Custom field collection; PlantDoc search,Yes
+Leaf Spot,disease,Partial,PlantVillage; PlantDoc; Roboflow,Yes
+Soft Rot,disease,Partial,PlantVillage; PlantDoc; Roboflow,Yes
+Bacterial Wilt,disease,Partial,PlantVillage; PlantDoc; Roboflow,Yes
+Black Spot,disease,Partial,PlantVillage; PlantDoc; Roboflow,Yes
+Fungal Storage Rot,disease,No,Custom storage dataset; PlantDoc search,Yes
+Mold/Fungal Contamination,disease,No,Custom storage dataset; Roboflow search,Yes
