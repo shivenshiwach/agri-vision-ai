@@ -1,0 +1,39 @@
+crops:
+  - Cotton
+  - Soybean
+  - Sugarcane
+  - Paddy (Rice)
+  - Wheat
+  - Grapes
+  - Pomegranate
+  - Banana
+  - Tomato
+  - Onion
+
+pests:
+  - Pink Bollworm
+  - Whitefly
+  - Thrips
+  - Aphids
+  - Fruit Borer
+  - Stem Borer
+  - Fall Armyworm
+
+diseases:
+  - Rust
+  - Powdery Mildew
+  - Downy Mildew
+  - Early Blight
+  - Late Blight
+  - Bacterial Blight
+  - Leaf Curl Virus
+  - Blast Disease
+
+animals:
+  - Wild Boar
+  - Monkeys
+  - Birds
+  - Parrots
+  - Sparrows
+  - Rats
+  - Snakes

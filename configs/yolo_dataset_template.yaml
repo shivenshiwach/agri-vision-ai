@@ -1,0 +1,27 @@
+path: datasets/mvp_yolo
+train: images/train
+val: images/val
+test: images/test
+names:
+  0: Pink Bollworm
+  1: Whitefly
+  2: Thrips
+  3: Aphids
+  4: Fruit Borer
+  5: Stem Borer
+  6: Fall Armyworm
+  7: Rust
+  8: Powdery Mildew
+  9: Downy Mildew
+  10: Early Blight
+  11: Late Blight
+  12: Bacterial Blight
+  13: Leaf Curl Virus
+  14: Blast Disease
+  15: Wild Boar
+  16: Monkeys
+  17: Birds
+  18: Parrots
+  19: Sparrows
+  20: Rats
+  21: Snakes

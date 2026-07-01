@@ -35,6 +35,19 @@ Recommended first training targets:
 
 Before training, review `docs/DATASET_GAPS.md` and confirm dataset licenses, class mappings, and annotation formats. Keep raw data under ignored dataset directories.
 
+## Milestone 2: Dataset Preparation
+
+Milestone 2 adds dataset planning and validation utilities without downloading datasets or training models.
+
+- MVP class config: `configs/mvp_classes.yaml`
+- YOLO dataset template: `configs/yolo_dataset_template.yaml`
+- Dataset source summary: `python scripts/prepare_datasets.py`
+- YOLO layout validation: `python scripts/validate_yolo_dataset.py --dataset-yaml configs/yolo_dataset_template.yaml`
+
+The MVP focuses on 32 first-phase classes: 10 crops, 7 pests, 8 diseases, and 7 animal-related classes. Crop recognition starts as a classifier, while pest, disease, and animal-related problems are prepared for YOLO-style detection.
+
+Read `docs/MVP_DATASET_PLAN.md` and `docs/TRAINING_PIPELINE.md` before collecting or annotating data.
+
 ## Setup
 
 ```bash
