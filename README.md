@@ -89,6 +89,17 @@ python scripts/download_sources.py --source ip102 --dry-run
 
 Confirmed downloads write to `datasets/raw/plantvillage` and `datasets/raw/ip102`, which remain ignored by Git.
 
+## Milestone 6: Dataset Extraction and Inspection
+
+Milestone 6 adds safe raw dataset inspection and IP102 extraction tooling without training models or committing datasets.
+
+- IP102 extraction dry-run: `python scripts/extract_ip102.py --dry-run`
+- IP102 extraction after approval: `python scripts/extract_ip102.py --confirm`
+- Raw dataset inspection: `python scripts/inspect_datasets.py`
+- Inspection workflow: `docs/DATASET_INSPECTION.md`
+
+PlantVillage is treated as a classification dataset. IP102 is inspected for classification labels and VOC2007 detection images/XML annotations. The next step is label mapping and conversion into project training formats.
+
 ## Setup
 
 ```bash
