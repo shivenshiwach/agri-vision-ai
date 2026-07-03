@@ -1,0 +1,391 @@
+manifest_version: 1
+milestone: 3
+name: MVP Dataset Manifest
+description: Planning manifest for the 32 MVP classes. No datasets are downloaded or approved by this file.
+download_status: none
+training_status: not_started
+classes:
+  - class_name: Cotton
+    category: crop
+    target_model: crop_classifier
+    dataset_source:
+      - PlantDoc
+      - Roboflow
+      - Open Images
+      - Custom Maharashtra field collection
+    dataset_status: custom_needed
+    license_review_required: true
+    notes: "Use public crop images only after license review. Add local field images across growth stages and phone camera conditions."
+    priority: high
+  - class_name: Soybean
+    category: crop
+    target_model: crop_classifier
+    dataset_source:
+      - PlantDoc
+      - Roboflow
+      - Open Images
+      - Custom Maharashtra field collection
+    dataset_status: custom_needed
+    license_review_required: true
+    notes: "Collect local field images with healthy crop, nutrient stress, and mixed backgrounds so crop routing is not leaf-only."
+    priority: high
+  - class_name: Sugarcane
+    category: crop
+    target_model: crop_classifier
+    dataset_source:
+      - PlantDoc
+      - Roboflow
+      - Open Images
+      - Custom Maharashtra field collection
+    dataset_status: custom_needed
+    license_review_required: true
+    notes: "Public data may not cover regional field context. Include wide field, stalk, and canopy views for crop recognition."
+    priority: high
+  - class_name: Paddy (Rice)
+    category: crop
+    target_model: crop_classifier
+    dataset_source:
+      - PlantDoc
+      - Roboflow
+      - Open Images
+      - Custom Maharashtra field collection
+    dataset_status: custom_needed
+    license_review_required: true
+    notes: "Prioritize field-stage images from nursery through mature crop. Keep paddy crop images separate from rice pest labels."
+    priority: high
+  - class_name: Wheat
+    category: crop
+    target_model: crop_classifier
+    dataset_source:
+      - PlantDoc
+      - Roboflow
+      - Open Images
+      - Custom Maharashtra field collection
+    dataset_status: custom_needed
+    license_review_required: true
+    notes: "Collect images across growth stages and dry field conditions. Avoid mixing wheat crop routing images with disease-only closeups."
+    priority: high
+  - class_name: Grapes
+    category: crop
+    target_model: crop_classifier
+    dataset_source:
+      - PlantDoc
+      - Roboflow
+      - Open Images
+      - Custom Maharashtra field collection
+    dataset_status: custom_needed
+    license_review_required: true
+    notes: "Include canopy, bunch, trellis, and leaf context from regional vineyards. Public images need duplicate and license review."
+    priority: medium
+  - class_name: Pomegranate
+    category: crop
+    target_model: crop_classifier
+    dataset_source:
+      - PlantDoc
+      - Roboflow
+      - Open Images
+      - Custom Maharashtra field collection
+    dataset_status: custom_needed
+    license_review_required: true
+    notes: "Collect fruit, leaf, and orchard views because public images may be product-focused rather than field-focused."
+    priority: medium
+  - class_name: Banana
+    category: crop
+    target_model: crop_classifier
+    dataset_source:
+      - PlantDoc
+      - Roboflow
+      - Open Images
+      - Custom Maharashtra field collection
+    dataset_status: custom_needed
+    license_review_required: true
+    notes: "Add local plantation images with leaves, pseudostem, bunches, and varied lighting. Keep crop labels separate from disease labels."
+    priority: medium
+  - class_name: Tomato
+    category: crop
+    target_model: crop_classifier
+    dataset_source:
+      - PlantVillage
+      - PlantDoc
+      - Roboflow
+      - Custom Maharashtra field collection
+    dataset_status: custom_needed
+    license_review_required: true
+    notes: "Public coverage is likely stronger than many crops, but local field images are still required for routing and disease context."
+    priority: high
+  - class_name: Onion
+    category: crop
+    target_model: crop_classifier
+    dataset_source:
+      - PlantDoc
+      - Roboflow
+      - Open Images
+      - Custom Maharashtra field collection
+    dataset_status: custom_needed
+    license_review_required: true
+    notes: "Collect field, bulb, and foliage images from local farms. Public coverage may be weak for field-stage crop recognition."
+    priority: high
+  - class_name: Pink Bollworm
+    category: pest
+    target_model: pest_detector
+    dataset_source:
+      - IP102
+      - Roboflow
+      - iNaturalist
+      - Custom cotton field annotation
+    dataset_status: custom_needed
+    license_review_required: true
+    notes: "Highest priority for cotton. Detection data should include larvae, damaged bolls, and bounding boxes around visible evidence."
+    priority: high
+  - class_name: Whitefly
+    category: pest
+    target_model: pest_detector
+    dataset_source:
+      - IP102
+      - Roboflow
+      - iNaturalist
+      - Custom field annotation
+    dataset_status: custom_needed
+    license_review_required: true
+    notes: "Needs close leaf underside imagery and field photos with small-object annotations. Review public insect labels carefully."
+    priority: high
+  - class_name: Thrips
+    category: pest
+    target_model: pest_detector
+    dataset_source:
+      - IP102
+      - Roboflow
+      - iNaturalist
+      - Custom field annotation
+    dataset_status: custom_needed
+    license_review_required: true
+    notes: "Small insects and symptom damage require high-resolution images. Custom data should include crops where thrips are actionable."
+    priority: medium
+  - class_name: Aphids
+    category: pest
+    target_model: pest_detector
+    dataset_source:
+      - IP102
+      - Roboflow
+      - iNaturalist
+      - Custom field annotation
+    dataset_status: custom_needed
+    license_review_required: true
+    notes: "Collect cluster-level annotations on stems and leaf undersides. Public labels may not match local crop context."
+    priority: medium
+  - class_name: Fruit Borer
+    category: pest
+    target_model: pest_detector
+    dataset_source:
+      - IP102
+      - Roboflow
+      - iNaturalist
+      - Custom fruit damage annotation
+    dataset_status: custom_needed
+    license_review_required: true
+    notes: "Needs crop-specific damage examples on tomato, cotton, and pomegranate. Annotate visible larvae and damaged fruit regions."
+    priority: high
+  - class_name: Stem Borer
+    category: pest
+    target_model: pest_detector
+    dataset_source:
+      - IP102
+      - Roboflow
+      - iNaturalist
+      - Custom field annotation
+    dataset_status: custom_needed
+    license_review_required: true
+    notes: "Public insect images may not show field symptoms. Include rice, sugarcane, and cereal damage views where possible."
+    priority: medium
+  - class_name: Fall Armyworm
+    category: pest
+    target_model: pest_detector
+    dataset_source:
+      - IP102
+      - Roboflow
+      - iNaturalist
+      - Custom maize and field annotation
+    dataset_status: custom_needed
+    license_review_required: true
+    notes: "Prioritize larvae and crop damage on maize and related hosts. Include bounding boxes and damage-region examples."
+    priority: high
+  - class_name: Rust
+    category: disease
+    target_model: disease_detector
+    dataset_source:
+      - PlantVillage
+      - PlantDoc
+      - Roboflow
+      - Custom field symptom annotation
+    dataset_status: custom_needed
+    license_review_required: true
+    notes: "Public leaf datasets can seed classification, but local disease severity and host-specific rust examples are required."
+    priority: medium
+  - class_name: Powdery Mildew
+    category: disease
+    target_model: disease_detector
+    dataset_source:
+      - PlantVillage
+      - PlantDoc
+      - Roboflow
+      - Custom field symptom annotation
+    dataset_status: custom_needed
+    license_review_required: true
+    notes: "Collect leaf and canopy images across grapes, vegetables, and other hosts. Annotate visible symptom regions when detection data is available."
+    priority: medium
+  - class_name: Downy Mildew
+    category: disease
+    target_model: disease_detector
+    dataset_source:
+      - PlantVillage
+      - PlantDoc
+      - Roboflow
+      - Custom field symptom annotation
+    dataset_status: custom_needed
+    license_review_required: true
+    notes: "Needs crop-specific field examples because symptoms vary by host. Public data should be checked for label quality."
+    priority: medium
+  - class_name: Early Blight
+    category: disease
+    target_model: disease_detector
+    dataset_source:
+      - PlantVillage
+      - PlantDoc
+      - Roboflow
+      - Custom vegetable field annotation
+    dataset_status: custom_needed
+    license_review_required: true
+    notes: "Strong public baseline likely exists for tomato and potato. Add local field images and lesion boxes before detector training."
+    priority: high
+  - class_name: Late Blight
+    category: disease
+    target_model: disease_detector
+    dataset_source:
+      - PlantVillage
+      - PlantDoc
+      - Roboflow
+      - Custom vegetable field annotation
+    dataset_status: custom_needed
+    license_review_required: true
+    notes: "Prioritize tomato and potato field imagery under varied moisture and lighting. Keep class mapping crop-aware."
+    priority: high
+  - class_name: Bacterial Blight
+    category: disease
+    target_model: disease_detector
+    dataset_source:
+      - PlantVillage
+      - PlantDoc
+      - Roboflow
+      - Custom field symptom annotation
+    dataset_status: custom_needed
+    license_review_required: true
+    notes: "Needs crop-specific examples because generic blight labels can overlap. Validate public labels before merging classes."
+    priority: high
+  - class_name: Leaf Curl Virus
+    category: disease
+    target_model: disease_detector
+    dataset_source:
+      - PlantVillage
+      - PlantDoc
+      - Roboflow
+      - Custom cotton and tomato annotation
+    dataset_status: custom_needed
+    license_review_required: true
+    notes: "High priority for cotton and tomato. Include whole-plant, leaf-level, and vector-related context where available."
+    priority: high
+  - class_name: Blast Disease
+    category: disease
+    target_model: disease_detector
+    dataset_source:
+      - PlantVillage
+      - PlantDoc
+      - Roboflow
+      - Custom paddy field annotation
+    dataset_status: custom_needed
+    license_review_required: true
+    notes: "High priority for paddy. Include nursery, vegetative, and panicle-stage examples with field-realistic backgrounds."
+    priority: high
+  - class_name: Wild Boar
+    category: animal
+    target_model: animal_detector
+    dataset_source:
+      - iNaturalist
+      - Open Images
+      - Roboflow
+      - Custom farm intrusion collection
+    dataset_status: custom_needed
+    license_review_required: true
+    notes: "Public wildlife images are not enough for field intrusion. Collect day and night farm-camera examples with varied distance."
+    priority: high
+  - class_name: Monkeys
+    category: animal
+    target_model: animal_detector
+    dataset_source:
+      - iNaturalist
+      - Open Images
+      - Roboflow
+      - Custom farm intrusion collection
+    dataset_status: custom_needed
+    license_review_required: true
+    notes: "Need local farm and orchard images with groups, occlusion, and different viewpoints. Review species labels in public data."
+    priority: high
+  - class_name: Birds
+    category: bird
+    target_model: animal_detector
+    dataset_source:
+      - Open Images
+      - Roboflow
+      - iNaturalist
+      - Custom field and storage collection
+    dataset_status: custom_needed
+    license_review_required: true
+    notes: "Use as a broad bird class for first baseline. Include flock feeding, storage, and field context rather than isolated bird portraits only."
+    priority: medium
+  - class_name: Parrots
+    category: bird
+    target_model: animal_detector
+    dataset_source:
+      - iNaturalist
+      - Open Images
+      - Roboflow
+      - Custom orchard collection
+    dataset_status: custom_needed
+    license_review_required: true
+    notes: "Keep as a specific crop-damage class after broad bird detection is stable. Add orchard and fruit-feeding context."
+    priority: low
+  - class_name: Sparrows
+    category: bird
+    target_model: animal_detector
+    dataset_source:
+      - iNaturalist
+      - Open Images
+      - Roboflow
+      - Custom field and storage collection
+    dataset_status: custom_needed
+    license_review_required: true
+    notes: "Small-object detection will need field and storage scenes, not only clean wildlife photos. May be grouped under Birds initially."
+    priority: low
+  - class_name: Rats
+    category: rodent
+    target_model: animal_detector
+    dataset_source:
+      - iNaturalist
+      - Open Images
+      - Roboflow
+      - Custom storage and field collection
+    dataset_status: custom_needed
+    license_review_required: true
+    notes: "High priority for storage and field damage. Collect low-light, partial occlusion, burrow, and grain-storage examples."
+    priority: high
+  - class_name: Snakes
+    category: reptile
+    target_model: animal_detector
+    dataset_source:
+      - iNaturalist
+      - Open Images
+      - Roboflow
+      - Custom safety collection
+    dataset_status: custom_needed
+    license_review_required: true
+    notes: "Safety-oriented class. Public images require careful review, and custom farm-context images should avoid unsafe collection practices."
+    priority: medium

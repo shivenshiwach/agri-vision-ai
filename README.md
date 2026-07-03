@@ -48,6 +48,16 @@ The MVP focuses on 32 first-phase classes: 10 crops, 7 pests, 8 diseases, and 7 
 
 Read `docs/MVP_DATASET_PLAN.md` and `docs/TRAINING_PIPELINE.md` before collecting or annotating data.
 
+## Milestone 3: MVP Dataset Manifest
+
+Milestone 3 adds a dataset manifest for the 32 MVP classes without downloading datasets, training models, or adding heavy files.
+
+- MVP dataset manifest: `configs/mvp_dataset_manifest.yaml`
+- Manifest documentation: `docs/MVP_DATASET_MANIFEST.md`
+- Manifest validation: `python scripts/validate_manifest.py`
+
+Every MVP class is marked for license review and custom data planning. The manifest is a planning checklist only; it does not make the project training-ready by itself.
+
 ## Setup
 
 ```bash
