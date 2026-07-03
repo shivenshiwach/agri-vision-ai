@@ -100,6 +100,27 @@ Milestone 6 adds safe raw dataset inspection and IP102 extraction tooling withou
 
 PlantVillage is treated as a classification dataset. IP102 is inspected for classification labels and VOC2007 detection images/XML annotations. The next step is label mapping and conversion into project training formats.
 
+## Milestone 7: Approved Label Mapping
+
+Milestone 7 records approved source-label to MVP-class mappings without training models, moving dataset files, or changing API behavior.
+
+- Approved label mapping: `configs/label_mapping.yaml`
+- Label mapping review: `docs/LABEL_MAPPING_REVIEW.md`
+- Mapping validation: `python scripts/validate_label_mapping.py`
+
+Only safe PlantVillage disease and IP102 pest mappings are approved. Weak mappings such as plant hopper to Whitefly, bacterial spot to Bacterial Blight, and non-exact Downy Mildew matches remain rejected.
+
+## Milestone 8: Disease Classifier Dataset
+
+Milestone 8 adds a dry-run-first PlantVillage dataset builder for the MVP disease classifier. It does not train models, modify API files, or commit dataset artifacts.
+
+- Disease classifier config: `configs/disease_classifier.yaml`
+- Dataset builder dry-run: `python scripts/build_disease_classifier_dataset.py --dry-run`
+- Dataset builder after approval: `python scripts/build_disease_classifier_dataset.py --confirm`
+- Dataset notes: `docs/DISEASE_CLASSIFIER_DATASET.md`
+
+The builder reads approved PlantVillage mappings from `configs/label_mapping.yaml`, scans `datasets/raw/plantvillage/raw/color`, and writes a `train/` and `val/` image-classification layout under `datasets/processed/disease_classifier` only when `--confirm` is used.
+
 ## Setup
 
 ```bash
