@@ -2,39 +2,51 @@ sources:
   plantvillage:
     name: PlantVillage
     type: public_classification_dataset
+    dataset_type: image_classification
+    download_method: git_clone
     planned_for:
       - crop disease classification baselines
       - tomato, potato, and supported crop disease references
       - MVP disease classes where labels match after review
     license_review_required: true
-    download_enabled: false
-    source_url: "TBD - pending license and URL approval"
-    notes: "Use only after license review, dataset version capture, duplicate checks, and crop-specific label mapping."
+    download_enabled: true
+    source_url: "https://github.com/spMohanty/PlantVillage-Dataset.git"
+    reference_url: "https://huggingface.co/datasets/mohanty/PlantVillage"
+    output_path: "datasets/raw/plantvillage"
+    notes: "Official open PlantVillage repository. Use only after license review, dataset version capture, duplicate checks, and crop-specific label mapping."
   ip102:
     name: IP102
     type: public_pest_classification_dataset
+    dataset_type: image_classification_with_detection_annotations
+    download_method: gdown_folder
     planned_for:
       - pest classifier baseline
       - pest detector pretraining where class overlap is reliable
       - MVP pest label research
     license_review_required: true
-    download_enabled: false
-    source_url: "TBD - pending license and URL approval"
-    notes: "Map insect labels carefully to MVP pest names. Public class names may not match field-damage labels directly."
+    download_enabled: true
+    source_url: "https://drive.google.com/drive/folders/1svFSy2Da3cVMvekBwe13mzyx38XZ9xWo?usp=sharing"
+    reference_url: "https://github.com/xpwu95/IP102"
+    output_path: "datasets/raw/ip102"
+    notes: "Official IP102 v1.1 Google Drive folder linked from the project repository. Requires gdown for folder download."
   plantdoc:
     name: PlantDoc
     type: public_field_image_dataset
+    dataset_type: image_classification_or_detection
+    download_method: not_supported
     planned_for:
       - crop disease field-image validation
       - crop recognition references
       - disease detection or classification baselines
     license_review_required: true
     download_enabled: false
-    source_url: "TBD - pending license and URL approval"
-    notes: "Useful for more realistic crop images than lab-only datasets. Review annotation format and label quality before use."
+    source_url: "TBD - pending official URL and license approval"
+    notes: "Useful for more realistic crop images than lab-only datasets. Review annotation format and label quality before enabling downloads."
   roboflow:
     name: Roboflow
     type: public_dataset_portal
+    dataset_type: mixed_detection_exports
+    download_method: not_supported
     planned_for:
       - YOLO-style object detection datasets
       - crop, pest, disease, and animal dataset discovery
@@ -46,22 +58,26 @@ sources:
   inaturalist:
     name: iNaturalist
     type: public_observation_dataset
+    dataset_type: image_classification_reference
+    download_method: not_supported
     planned_for:
       - pest reference imagery
       - animal, bird, rodent, and reptile reference imagery
       - species-level label research before farm-context collection
     license_review_required: true
     download_enabled: false
-    source_url: "TBD - pending license and URL approval"
+    source_url: "TBD - pending official URL and license approval"
     notes: "Reference images may not match farm-camera conditions. Confirm license per observation and avoid assuming field suitability."
   open_images:
     name: Open Images
     type: public_object_detection_dataset
+    dataset_type: object_detection
+    download_method: not_supported
     planned_for:
       - generic object detection pretraining
       - crop and animal-related baseline coverage
       - bounding-box format research
     license_review_required: true
     download_enabled: false
-    source_url: "TBD - pending license and URL approval"
+    source_url: "TBD - pending official URL and license approval"
     notes: "Use as weak baseline data only. Class labels may be too generic for farm-specific crop, pest, and animal decisions."

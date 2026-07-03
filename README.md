@@ -70,6 +70,25 @@ Milestone 4 adds safe dataset acquisition and preparation tooling without downlo
 
 Real downloads remain disabled until source licenses, URLs, class mappings, and annotation formats are approved.
 
+## Milestone 5: Approved Dataset Downloads
+
+Milestone 5 adds real download support for approved sources only: PlantVillage and IP102. Default behavior remains dry-run, and real downloads require `--confirm`.
+
+- PlantVillage downloader: `scripts/download_plantvillage.py`
+- IP102 downloader: `scripts/download_ip102.py`
+- Unified downloader: `scripts/download_sources.py`
+- Dataset inventory: `python scripts/dataset_inventory.py`
+- Real dataset notes: `docs/REAL_DATASETS.md`
+
+Dry-run examples:
+
+```bash
+python scripts/download_sources.py --source plantvillage --dry-run
+python scripts/download_sources.py --source ip102 --dry-run
+```
+
+Confirmed downloads write to `datasets/raw/plantvillage` and `datasets/raw/ip102`, which remain ignored by Git.
+
 ## Setup
 
 ```bash

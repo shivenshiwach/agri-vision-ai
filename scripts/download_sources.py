@@ -4,10 +4,16 @@ from pathlib import Path
 
 import yaml
 
+import download_ip102
+import download_plantvillage
+
 
 CONFIG_PATH = Path("configs/download_sources.yaml")
-SUPPORTED_SOURCES = ("plantvillage", "ip102", "plantdoc", "roboflow", "inaturalist", "open_images")
-DISABLED_DOWNLOAD_MESSAGE = "Real downloads are disabled until source licenses and URLs are approved."
+SUPPORTED_SOURCES = ("plantvillage", "ip102")
+CONFIRMED_DOWNLOADERS = {
+    "plantvillage": download_plantvillage.download,
+    "ip102": download_ip102.download,
+}
 
 
 def load_sources(config_path: Path) -> dict:
@@ -24,8 +30,16 @@ def load_sources(config_path: Path) -> dict:
     return config["sources"]
 
 
-def print_dry_run(source_key: str, source_config: dict, output_dir: Path) -> None:
-    planned_output = output_dir / source_key
+def output_path(source_key: str, source_config: dict, output_dir: Path | None) -> Path:
+    if output_dir is not None:
+        return output_dir / source_key
+    configured_path = source_config.get("output_path")
+    if configured_path:
+        return Path(configured_path)
+    return Path("datasets/raw") / source_key
+
+
+def print_dry_run(source_key: str, source_config: dict, destination: Path) -> None:
     planned_for = source_config.get("planned_for", [])
 
     print("Dataset source dry run")
@@ -33,10 +47,14 @@ def print_dry_run(source_key: str, source_config: dict, output_dir: Path) -> Non
     print(f"Source key: {source_key}")
     print(f"Name: {source_config.get('name')}")
     print(f"Type: {source_config.get('type')}")
+    print(f"Dataset type: {source_config.get('dataset_type')}")
+    print(f"Download method: {source_config.get('download_method')}")
     print(f"Download enabled: {source_config.get('download_enabled')}")
     print(f"License review required: {source_config.get('license_review_required')}")
     print(f"Source URL: {source_config.get('source_url')}")
-    print(f"Planned output directory: {planned_output}")
+    if source_config.get("reference_url"):
+        print(f"Reference URL: {source_config.get('reference_url')}")
+    print(f"Planned output directory: {destination}")
 
     print("\nPlanned use:")
     if isinstance(planned_for, list):
@@ -51,22 +69,33 @@ def print_dry_run(source_key: str, source_config: dict, output_dir: Path) -> Non
     print("\nNo files were downloaded. No directories were created.")
 
 
+def run_confirmed_download(source_key: str, source_config: dict, destination: Path) -> int:
+    if source_key not in CONFIRMED_DOWNLOADERS:
+        print(f"ERROR: real downloads are not implemented for source: {source_key}")
+        return 1
+
+    if source_config.get("download_enabled") is not True:
+        print(f"ERROR: downloads are disabled in config for source: {source_key}")
+        return 1
+
+    return CONFIRMED_DOWNLOADERS[source_key](destination=destination, confirm=True)
+
+
 def main() -> None:
-    parser = argparse.ArgumentParser(
-        description="Dry-run dataset source acquisition planning. Real downloads are disabled."
-    )
-    parser.add_argument("--source", required=True, choices=SUPPORTED_SOURCES, help="Planned dataset source to inspect.")
-    parser.add_argument("--dry-run", action="store_true", help="Print planned download actions without downloading data.")
+    parser = argparse.ArgumentParser(description="Dataset source acquisition. Dry-run is the default.")
+    parser.add_argument("--source", required=True, choices=SUPPORTED_SOURCES, help="Dataset source to inspect or download.")
+    parser.add_argument("--dry-run", action="store_true", help="Print planned actions without downloading data.")
+    parser.add_argument("--confirm", action="store_true", help="Actually download supported approved sources.")
     parser.add_argument(
         "--output-dir",
         type=Path,
-        default=Path("datasets/raw"),
-        help="Planned root directory for raw datasets.",
+        default=None,
+        help="Raw dataset root directory. The source key is appended to this path.",
     )
     args = parser.parse_args()
 
-    if not args.dry_run:
-        print(DISABLED_DOWNLOAD_MESSAGE)
+    if args.dry_run and args.confirm:
+        print("ERROR: use either --dry-run or --confirm, not both.")
         sys.exit(1)
 
     try:
@@ -76,7 +105,12 @@ def main() -> None:
         sys.exit(1)
 
     source_config = sources[args.source]
-    print_dry_run(args.source, source_config, args.output_dir)
+    destination = output_path(args.source, source_config, args.output_dir)
+
+    if args.confirm:
+        sys.exit(run_confirmed_download(args.source, source_config, destination))
+
+    print_dry_run(args.source, source_config, destination)
 
 
 if __name__ == "__main__":
