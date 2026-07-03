@@ -132,6 +132,16 @@ Milestone 9 adds PyTorch and torchvision training/evaluation scripts for an Effi
 
 Training uses `datasets/processed/disease_classifier`, auto-detects class folders, and writes checkpoints and metrics under `models/disease_classifier/` when run manually.
 
+## Milestone 10: Disease Classifier Inference
+
+Milestone 10 adds standalone disease classifier inference for one image at a time. It does not modify API files, retrain models, modify datasets, or change taxonomy files.
+
+- Prediction script help: `python scripts/predict_disease.py --help`
+- Example prediction: `python scripts/predict_disease.py image.jpg`
+- Inference guide: `docs/INFERENCE_GUIDE.md`
+
+The script loads `models/disease_classifier/best.pt` and `models/disease_classifier/classes.json`, runs EfficientNet-B0 inference, and prints the predicted class, confidence, and top predictions.
+
 ## Setup
 
 ```bash
