@@ -1,0 +1,11 @@
+dataset_path: datasets/processed/disease_classifier
+output_dir: models/disease_classifier
+model_name: efficientnet_b0
+image_size: 224
+batch_size: 64
+epochs: 20
+learning_rate: 0.001
+optimizer: adam
+loss: cross_entropy
+num_workers: 4
+seed: 42

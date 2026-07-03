@@ -121,6 +121,17 @@ Milestone 8 adds a dry-run-first PlantVillage dataset builder for the MVP diseas
 
 The builder reads approved PlantVillage mappings from `configs/label_mapping.yaml`, scans `datasets/raw/plantvillage/raw/color`, and writes a `train/` and `val/` image-classification layout under `datasets/processed/disease_classifier` only when `--confirm` is used.
 
+## Milestone 9: Disease Classifier Training
+
+Milestone 9 adds PyTorch and torchvision training/evaluation scripts for an EfficientNet-B0 disease classifier. It does not train automatically or modify API files.
+
+- Training config: `configs/training.yaml`
+- Training script help: `python scripts/train_disease_classifier.py --help`
+- Evaluation script help: `python scripts/evaluate_disease_classifier.py --help`
+- Training guide: `docs/TRAINING_GUIDE.md`
+
+Training uses `datasets/processed/disease_classifier`, auto-detects class folders, and writes checkpoints and metrics under `models/disease_classifier/` when run manually.
+
 ## Setup
 
 ```bash
