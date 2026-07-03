@@ -1,0 +1,103 @@
+mapping_version: 1
+milestone: 7
+name: Approved MVP Label Mapping
+description: >
+  Approved source-label to MVP-class mappings for safe MVP matches only. This
+  file does not approve training, dataset download, or dataset file movement.
+mappings:
+  - source_dataset: PlantVillage
+    source_label: "Potato___Early_blight"
+    target_group: diseases
+    target_class: "Early Blight"
+    review_status: approved
+    match_basis: "Exact disease name match after crop prefix normalization."
+  - source_dataset: PlantVillage
+    source_label: "Tomato___Early_blight"
+    target_group: diseases
+    target_class: "Early Blight"
+    review_status: approved
+    match_basis: "Exact disease name match after crop prefix normalization."
+  - source_dataset: PlantVillage
+    source_label: "Potato___Late_blight"
+    target_group: diseases
+    target_class: "Late Blight"
+    review_status: approved
+    match_basis: "Exact disease name match after crop prefix normalization."
+  - source_dataset: PlantVillage
+    source_label: "Tomato___Late_blight"
+    target_group: diseases
+    target_class: "Late Blight"
+    review_status: approved
+    match_basis: "Exact disease name match after crop prefix normalization."
+  - source_dataset: PlantVillage
+    source_label: "Tomato___Tomato_Yellow_Leaf_Curl_Virus"
+    target_group: diseases
+    target_class: "Leaf Curl Virus"
+    review_status: approved
+    match_basis: "PlantVillage tomato yellow leaf curl virus label maps to the MVP leaf curl virus class."
+  - source_dataset: PlantVillage
+    source_label: "Corn_(maize)___Common_rust_"
+    target_group: diseases
+    target_class: "Rust"
+    review_status: approved
+    match_basis: "Reviewed rust disease subtype under the MVP Rust class."
+  - source_dataset: PlantVillage
+    source_label: "Apple___Cedar_apple_rust"
+    target_group: diseases
+    target_class: "Rust"
+    review_status: approved
+    match_basis: "Reviewed rust disease subtype under the MVP Rust class."
+  - source_dataset: PlantVillage
+    source_label: "Squash___Powdery_mildew"
+    target_group: diseases
+    target_class: "Powdery Mildew"
+    review_status: approved
+    match_basis: "Exact disease name match after crop prefix normalization."
+  - source_dataset: PlantVillage
+    source_label: "Cherry_(including_sour)___Powdery_mildew"
+    target_group: diseases
+    target_class: "Powdery Mildew"
+    review_status: approved
+    match_basis: "Exact disease name match after crop prefix normalization."
+  - source_dataset: IP102
+    source_label: "25 aphids"
+    target_group: pests
+    target_class: "Aphids"
+    review_status: approved
+    match_basis: "Exact pest name match after IP102 numeric prefix normalization."
+  - source_dataset: IP102
+    source_label: "55 Thrips"
+    target_group: pests
+    target_class: "Thrips"
+    review_status: approved
+    match_basis: "Exact pest name match after IP102 numeric prefix normalization."
+  - source_dataset: IP102
+    source_label: "13 grain spreader thrips"
+    target_group: pests
+    target_class: "Thrips"
+    review_status: approved
+    match_basis: "Reviewed thrips subtype under the MVP Thrips class."
+  - source_dataset: IP102
+    source_label: "23 corn borer"
+    target_group: pests
+    target_class: "Stem Borer"
+    review_status: approved
+    match_basis: "Reviewed crop borer label under the MVP Stem Borer class."
+  - source_dataset: IP102
+    source_label: "24 army worm"
+    target_group: pests
+    target_class: "Fall Armyworm"
+    review_status: approved
+    match_basis: "Approved IP102 army worm label for the MVP Fall Armyworm class."
+  - source_dataset: IP102
+    source_label: "4 asiatic rice borer"
+    target_group: pests
+    target_class: "Stem Borer"
+    review_status: approved
+    match_basis: "Reviewed rice borer label under the MVP Stem Borer class."
+  - source_dataset: IP102
+    source_label: "5 yellow rice borer"
+    target_group: pests
+    target_class: "Stem Borer"
+    review_status: approved
+    match_basis: "Reviewed rice borer label under the MVP Stem Borer class."
