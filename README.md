@@ -58,6 +58,18 @@ Milestone 3 adds a dataset manifest for the 32 MVP classes without downloading d
 
 Every MVP class is marked for license review and custom data planning. The manifest is a planning checklist only; it does not make the project training-ready by itself.
 
+## Milestone 4: Dataset Acquisition Tooling
+
+Milestone 4 adds safe dataset acquisition and preparation tooling without downloading datasets, training models, or adding heavy files.
+
+- Download source config: `configs/download_sources.yaml`
+- Dry-run source inspection: `python scripts/download_sources.py --source plantvillage --dry-run`
+- YOLO build planning: `python scripts/build_yolo_dataset.py`
+- Data storage notes: `data/README.md`
+- Acquisition workflow: `docs/DATA_ACQUISITION_WORKFLOW.md`
+
+Real downloads remain disabled until source licenses, URLs, class mappings, and annotation formats are approved.
+
 ## Setup
 
 ```bash

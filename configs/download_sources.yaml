@@ -1,0 +1,67 @@
+sources:
+  plantvillage:
+    name: PlantVillage
+    type: public_classification_dataset
+    planned_for:
+      - crop disease classification baselines
+      - tomato, potato, and supported crop disease references
+      - MVP disease classes where labels match after review
+    license_review_required: true
+    download_enabled: false
+    source_url: "TBD - pending license and URL approval"
+    notes: "Use only after license review, dataset version capture, duplicate checks, and crop-specific label mapping."
+  ip102:
+    name: IP102
+    type: public_pest_classification_dataset
+    planned_for:
+      - pest classifier baseline
+      - pest detector pretraining where class overlap is reliable
+      - MVP pest label research
+    license_review_required: true
+    download_enabled: false
+    source_url: "TBD - pending license and URL approval"
+    notes: "Map insect labels carefully to MVP pest names. Public class names may not match field-damage labels directly."
+  plantdoc:
+    name: PlantDoc
+    type: public_field_image_dataset
+    planned_for:
+      - crop disease field-image validation
+      - crop recognition references
+      - disease detection or classification baselines
+    license_review_required: true
+    download_enabled: false
+    source_url: "TBD - pending license and URL approval"
+    notes: "Useful for more realistic crop images than lab-only datasets. Review annotation format and label quality before use."
+  roboflow:
+    name: Roboflow
+    type: public_dataset_portal
+    planned_for:
+      - YOLO-style object detection datasets
+      - crop, pest, disease, and animal dataset discovery
+      - annotation format conversion research
+    license_review_required: true
+    download_enabled: false
+    source_url: "TBD - pending workspace, dataset, and license approval"
+    notes: "Each Roboflow dataset must be reviewed individually for license, version, class names, and annotation quality."
+  inaturalist:
+    name: iNaturalist
+    type: public_observation_dataset
+    planned_for:
+      - pest reference imagery
+      - animal, bird, rodent, and reptile reference imagery
+      - species-level label research before farm-context collection
+    license_review_required: true
+    download_enabled: false
+    source_url: "TBD - pending license and URL approval"
+    notes: "Reference images may not match farm-camera conditions. Confirm license per observation and avoid assuming field suitability."
+  open_images:
+    name: Open Images
+    type: public_object_detection_dataset
+    planned_for:
+      - generic object detection pretraining
+      - crop and animal-related baseline coverage
+      - bounding-box format research
+    license_review_required: true
+    download_enabled: false
+    source_url: "TBD - pending license and URL approval"
+    notes: "Use as weak baseline data only. Class labels may be too generic for farm-specific crop, pest, and animal decisions."
