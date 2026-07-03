@@ -9,6 +9,13 @@ import yaml
 IMAGE_EXTENSIONS = {".jpg", ".jpeg", ".png", ".bmp", ".webp", ".tif", ".tiff"}
 DEFAULT_MVP_PATH = Path("configs/mvp_classes.yaml")
 DEFAULT_RAW_ROOT = Path("datasets/raw")
+MVP_PEST_SYNONYMS = {
+    "aphids": {"aphid", "aphids"},
+    "fall armyworm": {"armyworm", "fall armyworm"},
+    "fruit borer": {"borer", "fruit borer"},
+    "stem borer": {"borer", "stem borer"},
+    "whitefly": {"white fly", "whitefly"},
+}
 
 
 def load_mvp_classes(mvp_path: Path) -> dict:
@@ -43,6 +50,34 @@ def possible_matches(source_labels: list[str], target_labels: list[str]) -> list
             elif target_norm in source_norm or source_norm in target_norm:
                 matches.append((source, target, "substring"))
             elif source_tokens & target_tokens:
+                matches.append((source, target, "token_overlap"))
+
+    return matches
+
+
+def possible_pest_matches(source_labels: list[str], target_labels: list[str]) -> list[tuple[str, str, str]]:
+    matches: list[tuple[str, str, str]] = []
+
+    for source in source_labels:
+        source_norm = normalize_label(source)
+        source_tokens = token_set(source)
+
+        for target in target_labels:
+            target_norm = normalize_label(target)
+            target_tokens = token_set(target)
+            synonyms = MVP_PEST_SYNONYMS.get(target_norm, set())
+            synonym_norms = {normalize_label(synonym) for synonym in synonyms}
+            synonym_tokens = set().union(*(token_set(synonym) for synonym in synonyms)) if synonyms else set()
+
+            if not source_norm or not target_norm:
+                continue
+            if source_norm == target_norm or source_norm in synonym_norms:
+                matches.append((source, target, "exact_or_synonym"))
+            elif target_norm in source_norm or source_norm in target_norm:
+                matches.append((source, target, "substring"))
+            elif any(synonym and (synonym in source_norm or source_norm in synonym) for synonym in synonym_norms):
+                matches.append((source, target, "synonym_substring"))
+            elif (source_tokens & target_tokens) or (source_tokens & synonym_tokens):
                 matches.append((source, target, "token_overlap"))
 
     return matches
@@ -125,7 +160,7 @@ def count_images(path: Path) -> int:
 
 def inspect_ip102(raw_root: Path, mvp_classes: dict) -> None:
     ip102_root = raw_root / "ip102"
-    classes_txt = ip102_root / "classes.txt"
+    classes_txt = ip102_root / "Classification" / "classes.txt"
     classification_tar = ip102_root / "Classification" / "ip102_v1.1.tar"
     classification_dir = ip102_root / "Classification" / "ip102_v1.1"
     annotations_tar = ip102_root / "Detection" / "VOC2007" / "Annotations.tar"
@@ -142,9 +177,16 @@ def inspect_ip102(raw_root: Path, mvp_classes: dict) -> None:
     ip102_classes = read_classes_txt(classes_txt)
     print(f"Classification class count: {len(ip102_classes)}")
     if ip102_classes:
-        print("Classification classes:")
-        for class_name in ip102_classes:
+        print("First 30 classification classes:")
+        for class_name in ip102_classes[:30]:
             print(f"  - {class_name}")
+        if len(ip102_classes) > 30:
+            print(f"  ... {len(ip102_classes) - 30} more classes")
+
+    print()
+    print("Classification extraction:")
+    print(f"  - Extracted folder: {'found' if classification_dir.exists() else 'missing'} ({classification_dir})")
+    print(f"  - Extracted class folders: {len(count_images_by_class(classification_dir))}")
 
     print()
     print("Detection VOC2007 files:")
@@ -165,7 +207,7 @@ def inspect_ip102(raw_root: Path, mvp_classes: dict) -> None:
     print(f"  - Detection Annotations tar: {'found' if annotations_tar.exists() else 'missing'} ({annotations_tar})")
     print(f"  - Detection JPEGImages tar: {'found' if jpeg_tar.exists() else 'missing'} ({jpeg_tar})")
 
-    matches = possible_matches(ip102_classes, pest_targets)
+    matches = possible_pest_matches(ip102_classes, pest_targets)
     print()
     print("Possible MVP pest class matches:")
     if not matches:
