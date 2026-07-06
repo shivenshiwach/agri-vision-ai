@@ -1,25 +1,25 @@
 # Training Pipeline
 
-Milestone 2 defines the training path but does not run training.
+This document records general training hygiene. The active classifier path is documented in `docs/FULL_PLANTVILLAGE_TRAINING.md`.
 
 ## Local Development
 
 - Keep taxonomy and dataset planning files in Git.
 - Keep raw images, labels, model checkpoints, and experiment outputs out of Git.
-- Use `scripts/prepare_datasets.py` to review planned sources and MVP classes.
+- Use `scripts/prepare_datasets.py` to review planned sources and full taxonomy classes.
 - Use `scripts/validate_yolo_dataset.py` before training any YOLO detector.
 
 ## GitHub Sync
 
 - Commit source code, configs, docs, and small taxonomy CSV files.
 - Do not commit `datasets/`, `data/` raw assets, `models/`, `runs/`, or exported weights.
-- Sync dataset manifests and annotation rules through Git so server-side training uses the same class order.
+- Sync lightweight dataset configs and annotation rules through Git so server-side training uses the same class order.
 
 ## Server Training
 
 - Provision a GPU server with Python, PyTorch, Ultralytics, and storage for datasets.
 - Pull the GitHub repo on the server.
-- Copy or mount datasets into ignored folders such as `datasets/mvp_yolo`.
+- Copy or mount datasets into ignored folders such as `datasets/yolo_detector`.
 - Validate folder layout and labels before running training.
 
 ## Dataset Folder Layout
@@ -28,7 +28,7 @@ Recommended YOLO layout:
 
 ```text
 datasets/
-  mvp_yolo/
+  yolo_detector/
     images/
       train/
       val/
@@ -43,7 +43,7 @@ Each image should have a matching `.txt` label file with the same relative path 
 
 ## YOLO Training Flow
 
-1. Finalize MVP detector classes and class IDs in `configs/yolo_dataset_template.yaml`.
+1. Review detector classes and class IDs in `configs/yolo_dataset_template.yaml`.
 2. Collect or export images and labels into the YOLO folder layout.
 3. Run `python scripts/validate_yolo_dataset.py --dataset-yaml configs/yolo_dataset_template.yaml`.
 4. Train a baseline detector with Ultralytics on the server.

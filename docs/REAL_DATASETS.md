@@ -11,7 +11,7 @@ Milestone 5 enables guarded download tooling for approved dataset sources only. 
 | Reference source | `https://huggingface.co/datasets/mohanty/PlantVillage` |
 | License | CC BY-SA 3.0, based on the Hugging Face dataset card. Verify before redistribution or commercial use. |
 | Classes covered | Healthy and diseased plant leaf images across 14 crop species and 26 diseases. |
-| Intended use | Crop disease classification baseline and label-mapping research for MVP disease classes. |
+| Intended use | Full PlantVillage classifier training and crop disease classification baselines. |
 | Download path | `datasets/raw/plantvillage` |
 | Download command | `python scripts/download_sources.py --source plantvillage --confirm` |
 
@@ -31,13 +31,13 @@ Limitations:
 | Official download URL | `https://drive.google.com/drive/folders/1svFSy2Da3cVMvekBwe13mzyx38XZ9xWo?usp=sharing` |
 | License | Free for academic usage according to the official repository. Other uses require contacting the dataset author. |
 | Classes covered | 102 insect pest categories with more than 75,000 images; about 19,000 images include bounding boxes. |
-| Intended use | Pest classifier baseline, pest detector pretraining, and MVP pest label research. |
+| Intended use | Pest classifier baseline, pest detector pretraining, and pest label research against the full taxonomy. |
 | Download path | `datasets/raw/ip102` |
 | Download command | `python scripts/download_sources.py --source ip102 --confirm` |
 
 Limitations:
 
-- IP102 class names are not guaranteed to match local MVP pest labels exactly.
+- IP102 class names are not guaranteed to match local taxonomy pest labels exactly.
 - Many classes have long-tailed distribution and may need rebalancing.
 - Bounding boxes cover only part of the dataset.
 - Farm damage symptoms may still require custom Maharashtra field annotations.

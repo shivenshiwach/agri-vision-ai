@@ -1,5 +1,6 @@
 import argparse
 import json
+import random
 import sys
 from pathlib import Path
 from typing import Any
@@ -7,15 +8,13 @@ from typing import Any
 import yaml
 
 
-DEFAULT_CONFIG_PATH = Path("configs/training.yaml")
-DEFAULT_DATASET_PATH = Path("datasets/processed/disease_classifier")
-DEFAULT_OUTPUT_DIR = Path("models/disease_classifier")
-DEFAULT_CHECKPOINT_PATH = DEFAULT_OUTPUT_DIR / "best.pt"
-DEFAULT_CLASSES_PATH = DEFAULT_OUTPUT_DIR / "classes.json"
-DEFAULT_CONFUSION_MATRIX_PATH = DEFAULT_OUTPUT_DIR / "confusion_matrix.png"
+DEFAULT_CONFIG_PATH = Path("configs/full_plantvillage_training.yaml")
+DEFAULT_DATASET_PATH = Path("datasets/processed/full_plantvillage_classifier")
+DEFAULT_OUTPUT_DIR = Path("models/full_plantvillage_classifier")
 DEFAULT_IMAGE_SIZE = 224
 DEFAULT_BATCH_SIZE = 64
 DEFAULT_NUM_WORKERS = 4
+DEFAULT_SEED = 42
 MODEL_NAME = "efficientnet_b0"
 IMAGE_EXTENSIONS = {".jpg", ".jpeg", ".png", ".bmp", ".tif", ".tiff", ".webp"}
 
@@ -40,19 +39,18 @@ def config_value(config: dict[str, Any], key: str, default: Any) -> Any:
 
 
 def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(
-        description="Evaluate a trained EfficientNet-B0 disease classifier checkpoint."
-    )
-    parser.add_argument("--config", type=Path, default=DEFAULT_CONFIG_PATH, help="Training YAML config path.")
+    parser = argparse.ArgumentParser(description="Evaluate an EfficientNet-B0 ImageFolder classifier checkpoint.")
+    parser.add_argument("--config", type=Path, default=DEFAULT_CONFIG_PATH, help="Evaluation YAML config path.")
     parser.add_argument("--dataset-path", type=Path, default=None, help="Dataset root with train/ and val/ folders.")
+    parser.add_argument("--output-dir", type=Path, default=None, help="Directory containing checkpoints and output files.")
+    parser.add_argument("--checkpoint", type=Path, default=None, help="Checkpoint path. Defaults to <output-dir>/best.pt.")
+    parser.add_argument("--classes", type=Path, default=None, help="classes.json path. Defaults to <output-dir>/classes.json.")
     parser.add_argument("--split", default="val", help="Dataset split folder to evaluate. Defaults to val.")
-    parser.add_argument("--checkpoint", type=Path, default=None, help="Checkpoint path. Defaults to models/disease_classifier/best.pt.")
-    parser.add_argument("--classes", type=Path, default=None, help="classes.json path. Defaults to models/disease_classifier/classes.json.")
-    parser.add_argument("--output-dir", type=Path, default=None, help="Output directory for confusion_matrix.png.")
-    parser.add_argument("--confusion-matrix", type=Path, default=None, help="Confusion matrix PNG path.")
-    parser.add_argument("--batch-size", type=int, default=None, help="Batch size. Defaults to config value or 64.")
-    parser.add_argument("--image-size", type=int, default=None, help="Input image size. Defaults to config value, checkpoint value, or 224.")
-    parser.add_argument("--num-workers", type=int, default=None, help="DataLoader worker count. Defaults to config value or 4.")
+    parser.add_argument("--confusion-matrix", type=Path, default=None, help="PNG output path. Defaults to <output-dir>/confusion_matrix.png.")
+    parser.add_argument("--batch-size", type=int, default=None, help="Batch size. Defaults to 64.")
+    parser.add_argument("--image-size", type=int, default=None, help="Input image size. Defaults to config, checkpoint, or 224.")
+    parser.add_argument("--num-workers", type=int, default=None, help="DataLoader worker count. Defaults to 4.")
+    parser.add_argument("--seed", type=int, default=None, help="Random seed. Defaults to 42.")
     return parser.parse_args()
 
 
@@ -63,10 +61,10 @@ def resolved_settings(args: argparse.Namespace) -> dict[str, Any]:
     settings = {
         "config_path": str(args.config),
         "dataset_path": args.dataset_path or Path(config_value(config, "dataset_path", DEFAULT_DATASET_PATH)),
-        "split": args.split,
+        "output_dir": output_dir,
         "checkpoint": args.checkpoint or output_dir / "best.pt",
         "classes_path": args.classes or output_dir / "classes.json",
-        "output_dir": output_dir,
+        "split": args.split,
         "confusion_matrix": args.confusion_matrix or output_dir / "confusion_matrix.png",
         "model_name": str(config_value(config, "model_name", MODEL_NAME)),
         "image_size": args.image_size if args.image_size is not None else config.get("image_size"),
@@ -76,6 +74,7 @@ def resolved_settings(args: argparse.Namespace) -> dict[str, Any]:
             if args.num_workers is not None
             else int(config_value(config, "num_workers", DEFAULT_NUM_WORKERS))
         ),
+        "seed": args.seed if args.seed is not None else int(config_value(config, "seed", DEFAULT_SEED)),
     }
 
     if settings["model_name"] != MODEL_NAME:
@@ -94,6 +93,15 @@ def resolved_settings(args: argparse.Namespace) -> dict[str, Any]:
     return settings
 
 
+def set_seed(seed: int) -> None:
+    import torch
+
+    random.seed(seed)
+    torch.manual_seed(seed)
+    if torch.cuda.is_available():
+        torch.cuda.manual_seed_all(seed)
+
+
 def choose_device():
     import torch
 
@@ -102,6 +110,19 @@ def choose_device():
     if hasattr(torch.backends, "mps") and torch.backends.mps.is_available():
         return torch.device("mps")
     return torch.device("cpu")
+
+
+def load_checkpoint(path: Path) -> dict[str, Any]:
+    import torch
+
+    try:
+        checkpoint = torch.load(path, map_location="cpu", weights_only=False)
+    except TypeError:
+        checkpoint = torch.load(path, map_location="cpu")
+
+    if not isinstance(checkpoint, dict):
+        raise ValueError(f"{path} is not a supported image classifier checkpoint.")
+    return checkpoint
 
 
 def load_classes(classes_path: Path, checkpoint: dict[str, Any]) -> list[str]:
@@ -182,19 +203,6 @@ def create_model(num_classes: int):
     return model
 
 
-def load_checkpoint(path: Path) -> dict[str, Any]:
-    import torch
-
-    try:
-        checkpoint = torch.load(path, map_location="cpu", weights_only=False)
-    except TypeError:
-        checkpoint = torch.load(path, map_location="cpu")
-
-    if not isinstance(checkpoint, dict):
-        raise ValueError(f"{path} is not a supported disease classifier checkpoint.")
-    return checkpoint
-
-
 def evaluate(model, dataloader, num_classes: int, device):
     import torch
 
@@ -232,10 +240,10 @@ def save_confusion_matrix_png(matrix: list[list[int]], class_names: list[str], o
     from PIL import Image, ImageDraw, ImageFont
 
     class_count = len(class_names)
-    cell_size = max(42, min(80, 720 // max(class_count, 1)))
-    left_margin = 210
+    cell_size = max(32, min(72, 1220 // max(class_count, 1)))
+    left_margin = 280
     top_margin = 160
-    right_margin = 40
+    right_margin = 48
     bottom_margin = 120
     width = left_margin + class_count * cell_size + right_margin
     height = top_margin + class_count * cell_size + bottom_margin
@@ -252,7 +260,7 @@ def save_confusion_matrix_png(matrix: list[list[int]], class_names: list[str], o
     for index, class_name in enumerate(class_names):
         label = f"{index}: {class_name}"
         y = top_margin + index * cell_size + cell_size // 2 - 5
-        draw.text((20, y), label[:28], fill="black", font=font)
+        draw.text((20, y), label[:38], fill="black", font=font)
 
         x = left_margin + index * cell_size + 4
         draw.text((x, top_margin - 24), str(index), fill="black", font=font)
@@ -269,15 +277,21 @@ def save_confusion_matrix_png(matrix: list[list[int]], class_names: list[str], o
 
             value_text = str(value)
             text_width, text_height = text_size(draw, value_text, font)
-            draw.text(
-                (x0 + (cell_size - text_width) / 2, y0 + (cell_size - text_height) / 2),
-                value_text,
-                fill="black",
-                font=font,
-            )
+            if text_width <= cell_size - 4:
+                draw.text(
+                    (x0 + (cell_size - text_width) / 2, y0 + (cell_size - text_height) / 2),
+                    value_text,
+                    fill="black",
+                    font=font,
+                )
 
     legend_y = top_margin + class_count * cell_size + 24
-    draw.text((20, legend_y), "Index mapping is shown on the left. Rows are actual classes; columns are predictions.", fill="black", font=font)
+    draw.text(
+        (20, legend_y),
+        "Index mapping is shown on the left. Rows are actual classes; columns are predictions.",
+        fill="black",
+        font=font,
+    )
 
     output_path.parent.mkdir(parents=True, exist_ok=True)
     image.save(output_path)
@@ -296,15 +310,20 @@ def main() -> None:
         print(f"ERROR: Checkpoint not found: {settings['checkpoint']}")
         sys.exit(1)
 
+    set_seed(settings["seed"])
     device = choose_device()
+
     try:
         checkpoint = load_checkpoint(settings["checkpoint"])
     except (OSError, ValueError) as exc:
         print(f"ERROR: {exc}")
         sys.exit(1)
 
+    if checkpoint.get("model_name", MODEL_NAME) != MODEL_NAME:
+        print(f"ERROR: Unsupported checkpoint model: {checkpoint.get('model_name')!r}")
+        sys.exit(1)
     if "model_state_dict" not in checkpoint:
-        print(f"ERROR: {settings['checkpoint']} is not a supported disease classifier checkpoint.")
+        print(f"ERROR: {settings['checkpoint']} is not a supported image classifier checkpoint.")
         sys.exit(1)
 
     try:
@@ -329,8 +348,8 @@ def main() -> None:
 
     save_confusion_matrix_png(matrix, class_names, settings["confusion_matrix"])
 
-    print("Disease classifier evaluation")
-    print("=============================")
+    print("Image classifier evaluation")
+    print("===========================")
     print(f"Checkpoint: {settings['checkpoint']}")
     print(f"Dataset: {settings['dataset_path'] / settings['split']}")
     print(f"Device: {device}")

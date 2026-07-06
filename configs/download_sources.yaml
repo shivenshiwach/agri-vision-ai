@@ -7,7 +7,7 @@ sources:
     planned_for:
       - crop disease classification baselines
       - tomato, potato, and supported crop disease references
-      - MVP disease classes where labels match after review
+      - full PlantVillage classifier training
     license_review_required: true
     download_enabled: true
     source_url: "https://github.com/spMohanty/PlantVillage-Dataset.git"
@@ -22,7 +22,7 @@ sources:
     planned_for:
       - pest classifier baseline
       - pest detector pretraining where class overlap is reliable
-      - MVP pest label research
+      - pest label research against the full taxonomy
     license_review_required: true
     download_enabled: true
     source_url: "https://drive.google.com/drive/folders/1svFSy2Da3cVMvekBwe13mzyx38XZ9xWo?usp=sharing"

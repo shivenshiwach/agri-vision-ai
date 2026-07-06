@@ -10,7 +10,7 @@ Run:
 python scripts/inspect_datasets.py
 ```
 
-The inspection script is read-only. It reports whether expected raw dataset folders exist, prints class counts where available, and highlights possible matches to the MVP class names.
+The inspection script is read-only. It reports whether expected raw dataset folders exist, prints class counts where available, and highlights possible matches to the full taxonomy class names.
 
 ## PlantVillage
 
@@ -26,7 +26,7 @@ datasets/
             <image-files>
 ```
 
-The inspector lists `raw/color` class folders, counts images per class, and prints possible matches against MVP disease names from `configs/mvp_classes.yaml`.
+The inspector lists `raw/color` class folders, counts images per class, and prints possible matches against disease names from `configs/classes.yaml`.
 
 PlantVillage is useful for disease classification baselines, but it is not a YOLO detection dataset. It also does not replace local field data.
 
@@ -74,13 +74,11 @@ After extraction, rerun:
 python scripts/inspect_datasets.py
 ```
 
-The inspector checks `classes.txt`, reports the presence of VOC2007 tar files and extracted folders, counts extracted images and XML annotation files, and prints possible matches against MVP pest names.
+The inspector checks `classes.txt`, reports the presence of VOC2007 tar files and extracted folders, counts extracted images and XML annotation files, and prints possible matches against pest names from `configs/classes.yaml`.
 
 ## Next Step
 
-The next milestone should define label mapping and conversion rules:
+Possible future detector work should define label mapping and conversion rules:
 
-- map PlantVillage class names to MVP disease labels
-- map IP102 class names to MVP pest labels
 - convert approved IP102 VOC annotations into the project YOLO class order
 - keep all generated datasets under ignored `datasets/` paths

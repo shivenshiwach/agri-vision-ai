@@ -1,4 +1,4 @@
-path: datasets/mvp_yolo
+path: datasets/yolo_detector
 train: images/train
 val: images/val
 test: images/test

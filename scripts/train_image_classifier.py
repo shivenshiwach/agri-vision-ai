@@ -8,15 +8,16 @@ from typing import Any
 import yaml
 
 
-DEFAULT_CONFIG_PATH = Path("configs/training.yaml")
-DEFAULT_DATASET_PATH = Path("datasets/processed/disease_classifier")
-DEFAULT_OUTPUT_DIR = Path("models/disease_classifier")
+DEFAULT_CONFIG_PATH = Path("configs/full_plantvillage_training.yaml")
+DEFAULT_DATASET_PATH = Path("datasets/processed/full_plantvillage_classifier")
+DEFAULT_OUTPUT_DIR = Path("models/full_plantvillage_classifier")
 DEFAULT_IMAGE_SIZE = 224
 DEFAULT_BATCH_SIZE = 64
 DEFAULT_EPOCHS = 20
 DEFAULT_LEARNING_RATE = 0.001
 DEFAULT_NUM_WORKERS = 4
 DEFAULT_SEED = 42
+DEFAULT_PRETRAINED = True
 MODEL_NAME = "efficientnet_b0"
 IMAGE_EXTENSIONS = {".jpg", ".jpeg", ".png", ".bmp", ".tif", ".tiff", ".webp"}
 
@@ -40,25 +41,46 @@ def config_value(config: dict[str, Any], key: str, default: Any) -> Any:
     return default if value is None else value
 
 
+def config_bool(config: dict[str, Any], key: str, default: bool) -> bool:
+    value = config_value(config, key, default)
+    if isinstance(value, bool):
+        return value
+    if isinstance(value, str):
+        normalized = value.strip().lower()
+        if normalized in {"1", "true", "yes", "on"}:
+            return True
+        if normalized in {"0", "false", "no", "off"}:
+            return False
+    raise ValueError(f"{key} must be a boolean value.")
+
+
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
-        description="Train an EfficientNet-B0 disease classifier with PyTorch and torchvision."
+        description="Train a reusable EfficientNet-B0 image classifier from an ImageFolder dataset."
     )
     parser.add_argument("--config", type=Path, default=DEFAULT_CONFIG_PATH, help="Training YAML config path.")
     parser.add_argument("--dataset-path", type=Path, default=None, help="Dataset root with train/ and val/ folders.")
-    parser.add_argument("--output-dir", type=Path, default=None, help="Directory for best.pt, last.pt, classes.json, and history.json.")
-    parser.add_argument("--epochs", type=int, default=None, help="Number of training epochs. Defaults to config value or 20.")
-    parser.add_argument("--batch-size", type=int, default=None, help="Batch size. Defaults to config value or 64.")
-    parser.add_argument("--image-size", type=int, default=None, help="Input image size. Defaults to config value or 224.")
-    parser.add_argument("--learning-rate", type=float, default=None, help="Adam learning rate. Defaults to config value or 0.001.")
-    parser.add_argument("--num-workers", type=int, default=None, help="DataLoader worker count. Defaults to config value or 4.")
-    parser.add_argument("--seed", type=int, default=None, help="Random seed. Defaults to config value or 42.")
+    parser.add_argument(
+        "--output-dir",
+        type=Path,
+        default=None,
+        help="Directory for best.pt, last.pt, classes.json, and history.json.",
+    )
+    parser.add_argument("--epochs", type=int, default=None, help="Number of training epochs. Defaults to 20.")
+    parser.add_argument("--batch-size", type=int, default=None, help="Batch size. Defaults to 64.")
+    parser.add_argument("--image-size", type=int, default=None, help="Input image size. Defaults to 224.")
+    parser.add_argument("--learning-rate", type=float, default=None, help="Adam learning rate. Defaults to 0.001.")
+    parser.add_argument("--num-workers", type=int, default=None, help="DataLoader worker count. Defaults to 4.")
+    parser.add_argument("--seed", type=int, default=None, help="Random seed. Defaults to 42.")
     parser.add_argument("--no-pretrained", action="store_true", help="Disable ImageNet pretrained EfficientNet-B0 weights.")
     return parser.parse_args()
 
 
 def resolved_settings(args: argparse.Namespace) -> dict[str, Any]:
     config = load_config(args.config)
+    pretrained = config_bool(config, "pretrained", DEFAULT_PRETRAINED)
+    if args.no_pretrained:
+        pretrained = False
 
     settings = {
         "config_path": str(args.config),
@@ -79,7 +101,7 @@ def resolved_settings(args: argparse.Namespace) -> dict[str, Any]:
             else int(config_value(config, "num_workers", DEFAULT_NUM_WORKERS))
         ),
         "seed": args.seed if args.seed is not None else int(config_value(config, "seed", DEFAULT_SEED)),
-        "pretrained": not args.no_pretrained,
+        "pretrained": pretrained,
     }
 
     if settings["model_name"] != MODEL_NAME:
@@ -161,6 +183,8 @@ def load_datasets(dataset_path: Path, image_size: int):
     train_dataset = ImageFolder(train_dir, transform=train_transform)
     val_dataset = ImageFolder(val_dir, transform=val_transform)
 
+    if len(train_dataset.classes) < 2:
+        raise ValueError("At least two class folders are required for classification training.")
     if train_dataset.class_to_idx != val_dataset.class_to_idx:
         raise ValueError("train/ and val/ class folders must match exactly.")
 
@@ -190,7 +214,7 @@ def create_model(num_classes: int, pretrained: bool):
     try:
         weights = models.EfficientNet_B0_Weights.DEFAULT if pretrained else None
         model = models.efficientnet_b0(weights=weights)
-    except AttributeError:
+    except (AttributeError, TypeError):
         model = models.efficientnet_b0(pretrained=pretrained)
 
     in_features = model.classifier[1].in_features
@@ -333,10 +357,12 @@ def main() -> None:
         "best_val_accuracy": None,
     }
 
-    print("Disease classifier training")
-    print("===========================")
+    print("Image classifier training")
+    print("=========================")
     print(f"Dataset: {settings['dataset_path']}")
     print(f"Output: {settings['output_dir']}")
+    print(f"Model: {MODEL_NAME}")
+    print(f"Pretrained: {settings['pretrained']}")
     print(f"Classes: {len(class_names)}")
     print(f"Train images: {len(train_dataset)}")
     print(f"Val images: {len(val_dataset)}")

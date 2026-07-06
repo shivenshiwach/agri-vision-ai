@@ -2,145 +2,117 @@
 
 AI vision module scaffold for detecting crop, pest, disease, and animal problems from uploaded farm images.
 
-This setup does not include datasets, trained models, checkpoints, or generated artifacts. The current API returns deterministic mock predictions so the project structure and integration contract can be developed safely.
+This setup does not include datasets, trained models, checkpoints, or generated artifacts. The current API returns deterministic mock predictions so the project structure and integration contract can be developed safely. The active training path is the full PlantVillage image classifier.
 
 ## Project Structure
 
 - `api/`: FastAPI app, response schemas, and placeholder inference function.
-- `configs/`: Taxonomy and future model configuration.
+- `configs/`: Taxonomy, dataset, and training configuration.
 - `data/taxonomy/`: Lightweight CSV taxonomy and dataset mapping metadata.
-- `docs/`: Project plan, dataset research notes, and taxonomy explanation.
-- `scripts/`: Development utility scripts.
+- `docs/`: Project plan, dataset research notes, and training guides.
+- `scripts/`: Dataset, inspection, training, and evaluation utilities.
 - `training/`: Placeholder for future training workflows.
 - `tests/`: API tests.
 
-## AI Roadmap
+## Current Training Path
 
-Milestone 1 defines the Maharashtra agriculture taxonomy and dataset mapping. It covers crop, pest, disease, animal, bird, rodent, and reptile classes from the project document.
+The main classifier path uses all available PlantVillage `raw/color` class folders as a 38-class ImageFolder dataset.
 
-Planned model path:
+1. Download or place PlantVillage under `datasets/raw/plantvillage`.
+2. Inspect raw datasets without modifying files.
+3. Build `datasets/processed/full_plantvillage_classifier`.
+4. Train EfficientNet-B0 with `scripts/train_image_classifier.py`.
+5. Evaluate the validation split with `scripts/evaluate_image_classifier.py`.
 
-1. Build a crop classifier to route uploaded images by crop.
-2. Train focused pest detectors for high-priority visible insects and damage.
-3. Train disease detectors or classifiers for common leaf, fruit, and storage symptoms.
-4. Train animal detectors for wildlife, birds, rodents, and reptiles in field or storage settings.
-5. Add severity estimation using detected object counts, affected area, crop stage, and economic thresholds.
+Raw datasets, processed datasets, checkpoints, and generated metrics should stay out of Git.
 
-Recommended first training targets:
+## Dataset Acquisition And Inspection
 
-- Crops: Cotton, Soybean, Sugarcane, Paddy (Rice), Wheat, Grapes, Pomegranate, Banana, Tomato, and Onion.
-- Pests: Pink Bollworm, Whitefly, Thrips, Aphids, Fruit Borer, Stem Borer, and Fall Armyworm.
-- Diseases: Rust, Powdery Mildew, Downy Mildew, Early Blight, Late Blight, Bacterial Blight, Leaf Curl Virus, and Blast Disease.
-- Animals: Wild Boar, Monkeys, Birds, Parrots, Sparrows, Rats, and Snakes.
-
-Before training, review `docs/DATASET_GAPS.md` and confirm dataset licenses, class mappings, and annotation formats. Keep raw data under ignored dataset directories.
-
-## Milestone 2: Dataset Preparation
-
-Milestone 2 adds dataset planning and validation utilities without downloading datasets or training models.
-
-- MVP class config: `configs/mvp_classes.yaml`
-- YOLO dataset template: `configs/yolo_dataset_template.yaml`
-- Dataset source summary: `python scripts/prepare_datasets.py`
-- YOLO layout validation: `python scripts/validate_yolo_dataset.py --dataset-yaml configs/yolo_dataset_template.yaml`
-
-The MVP focuses on 32 first-phase classes: 10 crops, 7 pests, 8 diseases, and 7 animal-related classes. Crop recognition starts as a classifier, while pest, disease, and animal-related problems are prepared for YOLO-style detection.
-
-Read `docs/MVP_DATASET_PLAN.md` and `docs/TRAINING_PIPELINE.md` before collecting or annotating data.
-
-## Milestone 3: MVP Dataset Manifest
-
-Milestone 3 adds a dataset manifest for the 32 MVP classes without downloading datasets, training models, or adding heavy files.
-
-- MVP dataset manifest: `configs/mvp_dataset_manifest.yaml`
-- Manifest documentation: `docs/MVP_DATASET_MANIFEST.md`
-- Manifest validation: `python scripts/validate_manifest.py`
-
-Every MVP class is marked for license review and custom data planning. The manifest is a planning checklist only; it does not make the project training-ready by itself.
-
-## Milestone 4: Dataset Acquisition Tooling
-
-Milestone 4 adds safe dataset acquisition and preparation tooling without downloading datasets, training models, or adding heavy files.
-
-- Download source config: `configs/download_sources.yaml`
-- Dry-run source inspection: `python scripts/download_sources.py --source plantvillage --dry-run`
-- YOLO build planning: `python scripts/build_yolo_dataset.py`
-- Data storage notes: `data/README.md`
-- Acquisition workflow: `docs/DATA_ACQUISITION_WORKFLOW.md`
-
-Real downloads remain disabled until source licenses, URLs, class mappings, and annotation formats are approved.
-
-## Milestone 5: Approved Dataset Downloads
-
-Milestone 5 adds real download support for approved sources only: PlantVillage and IP102. Default behavior remains dry-run, and real downloads require `--confirm`.
-
-- PlantVillage downloader: `scripts/download_plantvillage.py`
-- IP102 downloader: `scripts/download_ip102.py`
-- Unified downloader: `scripts/download_sources.py`
-- Dataset inventory: `python scripts/dataset_inventory.py`
-- Real dataset notes: `docs/REAL_DATASETS.md`
-
-Dry-run examples:
+Dry-run source inspection:
 
 ```bash
 python scripts/download_sources.py --source plantvillage --dry-run
-python scripts/download_sources.py --source ip102 --dry-run
 ```
 
-Confirmed downloads write to `datasets/raw/plantvillage` and `datasets/raw/ip102`, which remain ignored by Git.
+Confirmed PlantVillage download after source review:
 
-## Milestone 6: Dataset Extraction and Inspection
+```bash
+python scripts/download_sources.py --source plantvillage --confirm
+```
 
-Milestone 6 adds safe raw dataset inspection and IP102 extraction tooling without training models or committing datasets.
+Inspect local raw datasets:
 
-- IP102 extraction dry-run: `python scripts/extract_ip102.py --dry-run`
-- IP102 extraction after approval: `python scripts/extract_ip102.py --confirm`
-- Raw dataset inspection: `python scripts/inspect_datasets.py`
-- Inspection workflow: `docs/DATASET_INSPECTION.md`
+```bash
+python scripts/inspect_datasets.py
+```
 
-PlantVillage is treated as a classification dataset. IP102 is inspected for classification labels and VOC2007 detection images/XML annotations. The next step is label mapping and conversion into project training formats.
+PlantVillage downloads write to `datasets/raw/plantvillage`, which remains ignored by Git.
 
-## Milestone 7: Approved Label Mapping
+## Full PlantVillage Dataset
 
-Milestone 7 records approved source-label to MVP-class mappings without training models, moving dataset files, or changing API behavior.
+- Dataset builder: `scripts/build_full_plantvillage_classifier_dataset.py`
+- Dataset config: `configs/full_plantvillage_classifier.yaml`
+- Dataset guide: `docs/FULL_PLANTVILLAGE_CLASSIFIER.md`
 
-- Approved label mapping: `configs/label_mapping.yaml`
-- Label mapping review: `docs/LABEL_MAPPING_REVIEW.md`
-- Mapping validation: `python scripts/validate_label_mapping.py`
+Preview the processed dataset plan:
 
-Only safe PlantVillage disease and IP102 pest mappings are approved. Weak mappings such as plant hopper to Whitefly, bacterial spot to Bacterial Blight, and non-exact Downy Mildew matches remain rejected.
+```bash
+python scripts/build_full_plantvillage_classifier_dataset.py --dry-run
+```
 
-## Milestone 8: Disease Classifier Dataset
+Create the processed dataset after review:
 
-Milestone 8 adds a dry-run-first PlantVillage dataset builder for the MVP disease classifier. It does not train models, modify API files, or commit dataset artifacts.
+```bash
+python scripts/build_full_plantvillage_classifier_dataset.py --confirm
+```
 
-- Disease classifier config: `configs/disease_classifier.yaml`
-- Dataset builder dry-run: `python scripts/build_disease_classifier_dataset.py --dry-run`
-- Dataset builder after approval: `python scripts/build_disease_classifier_dataset.py --confirm`
-- Dataset notes: `docs/DISEASE_CLASSIFIER_DATASET.md`
+Default output:
 
-The builder reads approved PlantVillage mappings from `configs/label_mapping.yaml`, scans `datasets/raw/plantvillage/raw/color`, and writes a `train/` and `val/` image-classification layout under `datasets/processed/disease_classifier` only when `--confirm` is used.
+```text
+datasets/processed/full_plantvillage_classifier
+```
 
-## Milestone 9: Disease Classifier Training
+## Full PlantVillage Training
 
-Milestone 9 adds PyTorch and torchvision training/evaluation scripts for an EfficientNet-B0 disease classifier. It does not train automatically or modify API files.
+- Training config: `configs/full_plantvillage_training.yaml`
+- Training script: `scripts/train_image_classifier.py`
+- Evaluation script: `scripts/evaluate_image_classifier.py`
+- Training guide: `docs/FULL_PLANTVILLAGE_TRAINING.md`
 
-- Training config: `configs/training.yaml`
-- Training script help: `python scripts/train_disease_classifier.py --help`
-- Evaluation script help: `python scripts/evaluate_disease_classifier.py --help`
-- Training guide: `docs/TRAINING_GUIDE.md`
+Show training options:
 
-Training uses `datasets/processed/disease_classifier`, auto-detects class folders, and writes checkpoints and metrics under `models/disease_classifier/` when run manually.
+```bash
+python scripts/train_image_classifier.py --help
+```
 
-## Milestone 10: Disease Classifier Inference
+Train manually:
 
-Milestone 10 adds standalone disease classifier inference for one image at a time. It does not modify API files, retrain models, modify datasets, or change taxonomy files.
+```bash
+python scripts/train_image_classifier.py --config configs/full_plantvillage_training.yaml
+```
 
-- Prediction script help: `python scripts/predict_disease.py --help`
-- Example prediction: `python scripts/predict_disease.py image.jpg`
-- Inference guide: `docs/INFERENCE_GUIDE.md`
+Show evaluation options:
 
-The script loads `models/disease_classifier/best.pt` and `models/disease_classifier/classes.json`, runs EfficientNet-B0 inference, and prints the predicted class, confidence, and top predictions.
+```bash
+python scripts/evaluate_image_classifier.py --help
+```
+
+Evaluate the validation split:
+
+```bash
+python scripts/evaluate_image_classifier.py --config configs/full_plantvillage_training.yaml
+```
+
+Default model output:
+
+```text
+models/full_plantvillage_classifier/
+  best.pt
+  last.pt
+  classes.json
+  history.json
+  confusion_matrix.png
+```
 
 ## Setup
 
@@ -157,6 +129,10 @@ pytest
 ```bash
 python scripts/check_env.py
 pytest
+python scripts/train_image_classifier.py --help
+python scripts/evaluate_image_classifier.py --help
+python -m compileall scripts
+git diff --check
 ```
 
 ## API

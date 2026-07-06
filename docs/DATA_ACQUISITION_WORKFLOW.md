@@ -6,7 +6,7 @@ Milestone 4 adds safe dataset acquisition tooling only. It does not download dat
 
 Local development keeps only scripts, configs, taxonomy files, and documentation in Git.
 
-- Review MVP classes in `configs/mvp_classes.yaml`.
+- Review full taxonomy classes in `configs/classes.yaml`.
 - Review source plans in `configs/download_sources.yaml`.
 - Run dry-run checks with `scripts/download_sources.py`.
 - Review detector class order with `scripts/build_yolo_dataset.py`.
@@ -69,11 +69,11 @@ Each downloaded source should have recorded metadata:
 
 ## 5. YOLO Preparation
 
-After source review and label mapping, convert detector data into the MVP YOLO layout:
+After source review and label mapping, convert detector data into the YOLO layout:
 
 ```text
 datasets/
-  mvp_yolo/
+  yolo_detector/
     images/
       train/
       val/

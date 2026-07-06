@@ -7,9 +7,9 @@ import yaml
 
 
 IMAGE_EXTENSIONS = {".jpg", ".jpeg", ".png", ".bmp", ".webp", ".tif", ".tiff"}
-DEFAULT_MVP_PATH = Path("configs/mvp_classes.yaml")
+DEFAULT_TAXONOMY_PATH = Path("configs/classes.yaml")
 DEFAULT_RAW_ROOT = Path("datasets/raw")
-MVP_PEST_SYNONYMS = {
+PEST_SYNONYMS = {
     "aphids": {"aphid", "aphids"},
     "fall armyworm": {"armyworm", "fall armyworm"},
     "fruit borer": {"borer", "fruit borer"},
@@ -18,11 +18,11 @@ MVP_PEST_SYNONYMS = {
 }
 
 
-def load_mvp_classes(mvp_path: Path) -> dict:
-    with mvp_path.open("r", encoding="utf-8") as mvp_file:
-        data = yaml.safe_load(mvp_file)
+def load_taxonomy_classes(taxonomy_path: Path) -> dict:
+    with taxonomy_path.open("r", encoding="utf-8") as taxonomy_file:
+        data = yaml.safe_load(taxonomy_file)
     if not isinstance(data, dict):
-        raise ValueError(f"{mvp_path} must contain a YAML mapping.")
+        raise ValueError(f"{taxonomy_path} must contain a YAML mapping.")
     return data
 
 
@@ -65,7 +65,7 @@ def possible_pest_matches(source_labels: list[str], target_labels: list[str]) ->
         for target in target_labels:
             target_norm = normalize_label(target)
             target_tokens = token_set(target)
-            synonyms = MVP_PEST_SYNONYMS.get(target_norm, set())
+            synonyms = PEST_SYNONYMS.get(target_norm, set())
             synonym_norms = {normalize_label(synonym) for synonym in synonyms}
             synonym_tokens = set().union(*(token_set(synonym) for synonym in synonyms)) if synonyms else set()
 
@@ -97,10 +97,10 @@ def count_images_by_class(class_root: Path) -> Counter:
     return counts
 
 
-def inspect_plantvillage(raw_root: Path, mvp_classes: dict) -> None:
+def inspect_plantvillage(raw_root: Path, taxonomy_classes: dict) -> None:
     plantvillage_root = raw_root / "plantvillage"
     color_root = plantvillage_root / "raw" / "color"
-    disease_targets = mvp_classes.get("diseases", [])
+    disease_targets = taxonomy_classes.get("diseases", [])
 
     print("PlantVillage")
     print("============")
@@ -125,7 +125,7 @@ def inspect_plantvillage(raw_root: Path, mvp_classes: dict) -> None:
 
     matches = possible_matches(list(counts), disease_targets)
     print()
-    print("Possible MVP disease matches:")
+    print("Possible taxonomy disease matches:")
     if not matches:
         print("  - none")
     else:
@@ -158,7 +158,7 @@ def count_images(path: Path) -> int:
     return sum(1 for item in path.rglob("*") if item.is_file() and item.suffix.lower() in IMAGE_EXTENSIONS)
 
 
-def inspect_ip102(raw_root: Path, mvp_classes: dict) -> None:
+def inspect_ip102(raw_root: Path, taxonomy_classes: dict) -> None:
     ip102_root = raw_root / "ip102"
     classes_txt = ip102_root / "Classification" / "classes.txt"
     classification_tar = ip102_root / "Classification" / "ip102_v1.1.tar"
@@ -167,7 +167,7 @@ def inspect_ip102(raw_root: Path, mvp_classes: dict) -> None:
     annotations_dir = ip102_root / "Detection" / "VOC2007" / "Annotations"
     jpeg_tar = ip102_root / "Detection" / "VOC2007" / "JPEGImages.tar"
     jpeg_dir = ip102_root / "Detection" / "VOC2007" / "JPEGImages"
-    pest_targets = mvp_classes.get("pests", [])
+    pest_targets = taxonomy_classes.get("pests", [])
 
     print("IP102")
     print("=====")
@@ -209,7 +209,7 @@ def inspect_ip102(raw_root: Path, mvp_classes: dict) -> None:
 
     matches = possible_pest_matches(ip102_classes, pest_targets)
     print()
-    print("Possible MVP pest class matches:")
+    print("Possible taxonomy pest class matches:")
     if not matches:
         print("  - none")
     else:
@@ -221,11 +221,16 @@ def inspect_ip102(raw_root: Path, mvp_classes: dict) -> None:
 def main() -> None:
     parser = argparse.ArgumentParser(description="Inspect local raw datasets without modifying files.")
     parser.add_argument("--raw-root", type=Path, default=DEFAULT_RAW_ROOT, help="Raw dataset root directory.")
-    parser.add_argument("--mvp-config", type=Path, default=DEFAULT_MVP_PATH, help="Path to MVP classes YAML.")
+    parser.add_argument(
+        "--taxonomy-config",
+        type=Path,
+        default=DEFAULT_TAXONOMY_PATH,
+        help="Path to full taxonomy classes YAML.",
+    )
     args = parser.parse_args()
 
     try:
-        mvp_classes = load_mvp_classes(args.mvp_config)
+        taxonomy_classes = load_taxonomy_classes(args.taxonomy_config)
     except (OSError, ValueError, yaml.YAMLError) as exc:
         print(f"ERROR: {exc}")
         raise SystemExit(1) from exc
@@ -233,11 +238,11 @@ def main() -> None:
     print("Dataset inspection")
     print("==================")
     print(f"Raw root: {args.raw_root}")
-    print(f"MVP config: {args.mvp_config}")
+    print(f"Taxonomy config: {args.taxonomy_config}")
     print()
 
-    inspect_plantvillage(args.raw_root, mvp_classes)
-    inspect_ip102(args.raw_root, mvp_classes)
+    inspect_plantvillage(args.raw_root, taxonomy_classes)
+    inspect_ip102(args.raw_root, taxonomy_classes)
     print("Inspection complete. No files were created, moved, extracted, or deleted.")
 
 
