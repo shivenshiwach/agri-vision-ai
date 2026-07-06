@@ -1,0 +1,5 @@
+dataset_path: datasets/processed/full_plantvillage_classifier
+image_size: 224
+batch_size: 64
+epochs: 20
+model_name: efficientnet_b0
