@@ -9,6 +9,7 @@ This file is the primary operating guide for future Codex work in this repositor
 - `docs/TESTING_GUIDE.md`
 - `docs/GIT_GUIDE.md`
 - `docs/MILESTONES.md`
+- `docs/DECISIONS.md`
 
 If this file and the repository disagree, inspect the repository first, state the discrepancy, and update documentation before making implementation decisions.
 
