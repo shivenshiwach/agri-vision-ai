@@ -9,7 +9,18 @@ import download_plantvillage
 
 
 CONFIG_PATH = Path("configs/download_sources.yaml")
-SUPPORTED_SOURCES = ("plantvillage", "ip102")
+SUPPORTED_SOURCES = (
+    "plantvillage",
+    "ip102",
+    "plantdoc",
+    "plantdoc_plus",
+    "plantnet",
+    "kaggle_field_diseases",
+    "custom_field_diseases",
+    "roboflow",
+    "inaturalist",
+    "open_images",
+)
 CONFIRMED_DOWNLOADERS = {
     "plantvillage": download_plantvillage.download,
     "ip102": download_ip102.download,
@@ -70,12 +81,11 @@ def print_dry_run(source_key: str, source_config: dict, destination: Path) -> No
 
 
 def run_confirmed_download(source_key: str, source_config: dict, destination: Path) -> int:
-    if source_key not in CONFIRMED_DOWNLOADERS:
-        print(f"ERROR: real downloads are not implemented for source: {source_key}")
-        return 1
-
     if source_config.get("download_enabled") is not True:
         print(f"ERROR: downloads are disabled in config for source: {source_key}")
+        return 1
+    if source_key not in CONFIRMED_DOWNLOADERS:
+        print(f"ERROR: real downloads are not implemented for source: {source_key}")
         return 1
 
     return CONFIRMED_DOWNLOADERS[source_key](destination=destination, confirm=True)

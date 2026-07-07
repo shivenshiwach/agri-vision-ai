@@ -1,0 +1,89 @@
+canonical_label,alias,notes
+Wilt,wilt,generic disease alias
+Wilt,fusarium wilt,common dataset alias
+Wilt,verticillium wilt,common dataset alias
+Leaf Curl Virus,leaf curl virus,generic disease alias
+Leaf Curl Virus,leaf curl,generic disease alias
+Leaf Curl Virus,tomato leaf curl virus,common dataset alias
+Leaf Curl Virus,tomato yellow leaf curl virus,PlantVillage-style alias
+Leaf Curl Virus,Tomato___Tomato_Yellow_Leaf_Curl_Virus,PlantVillage folder
+Bacterial Blight,bacterial blight,generic disease alias
+Grey Mildew,grey mildew,generic disease alias
+Grey Mildew,gray mildew,US spelling alias
+Rust,rust,generic disease alias
+Rust,common rust,common dataset alias
+Rust,leaf rust,common dataset alias
+Rust,cedar apple rust,PlantVillage-style alias
+Rust,Apple___Cedar_apple_rust,PlantVillage folder
+Rust,Corn_(maize)___Common_rust_,PlantVillage folder
+Yellow Mosaic Virus,yellow mosaic virus,generic disease alias
+Yellow Mosaic Virus,yellow mosaic,generic disease alias
+Anthracnose,anthracnose,generic disease alias
+Red Rot,red rot,generic disease alias
+Smut,smut,generic disease alias
+Grassy Shoot Disease,grassy shoot disease,generic disease alias
+Blast Disease,blast disease,generic disease alias
+Blast Disease,blast,generic disease alias
+Blast Disease,rice blast,common dataset alias
+Bacterial Leaf Blight,bacterial leaf blight,generic disease alias
+Sheath Blight,sheath blight,generic disease alias
+Loose Smut,loose smut,generic disease alias
+Karnal Bunt,karnal bunt,generic disease alias
+Grain Smut,grain smut,generic disease alias
+Downy Mildew,downy mildew,generic disease alias
+Ergot,ergot,generic disease alias
+Leaf Blight,leaf blight,generic disease alias
+Leaf Blight,northern leaf blight,common dataset alias
+Leaf Blight,Corn_(maize)___Northern_Leaf_Blight,PlantVillage folder
+Leaf Blight,Grape___Leaf_blight_(Isariopsis_Leaf_Spot),PlantVillage folder
+Sterility Mosaic Disease,sterility mosaic disease,generic disease alias
+Dry Root Rot,dry root rot,generic disease alias
+Cercospora Leaf Spot,cercospora leaf spot,generic disease alias
+Cercospora Leaf Spot,gray leaf spot,US spelling alias
+Cercospora Leaf Spot,grey leaf spot,UK spelling alias
+Cercospora Leaf Spot,Corn_(maize)___Cercospora_leaf_spot Gray_leaf_spot,PlantVillage folder
+Tikka Disease,tikka disease,generic disease alias
+Tikka Disease,tikka,common dataset alias
+Collar Rot,collar rot,generic disease alias
+Alternaria Blight,alternaria blight,generic disease alias
+Necrosis,necrosis,generic disease alias
+Powdery Mildew,powdery mildew,generic disease alias
+Powdery Mildew,Cherry_(including_sour)___Powdery_mildew,PlantVillage folder
+Powdery Mildew,Squash___Powdery_mildew,PlantVillage folder
+Panama Wilt,panama wilt,generic disease alias
+Sigatoka Disease,sigatoka disease,generic disease alias
+Sigatoka Disease,sigatoka,generic disease alias
+Sigatoka Disease,black sigatoka,common dataset alias
+Sigatoka Disease,yellow sigatoka,common dataset alias
+Bunchy Top Virus,bunchy top virus,generic disease alias
+Citrus Canker,citrus canker,generic disease alias
+Gummosis,gummosis,generic disease alias
+Early Blight,early blight,generic disease alias
+Early Blight,Potato___Early_blight,PlantVillage folder
+Early Blight,Tomato___Early_blight,PlantVillage folder
+Late Blight,late blight,generic disease alias
+Late Blight,Potato___Late_blight,PlantVillage folder
+Late Blight,Tomato___Late_blight,PlantVillage folder
+Purple Blotch,purple blotch,generic disease alias
+Stemphylium Blight,stemphylium blight,generic disease alias
+Phomopsis Blight,phomopsis blight,generic disease alias
+Yellow Vein Mosaic Virus,yellow vein mosaic virus,generic disease alias
+Yellow Vein Mosaic Virus,yellow vein mosaic,generic disease alias
+Black Rot,black rot,generic disease alias
+Black Rot,Apple___Black_rot,PlantVillage folder
+Black Rot,Grape___Black_rot,PlantVillage folder
+Bud Rot,bud rot,generic disease alias
+Yellow Leaf Disease,yellow leaf disease,generic disease alias
+Rhizome Rot,rhizome rot,generic disease alias
+Leaf Spot,leaf spot,generic disease alias
+Leaf Spot,septoria leaf spot,common dataset alias
+Leaf Spot,Tomato___Septoria_leaf_spot,PlantVillage folder
+Soft Rot,soft rot,generic disease alias
+Bacterial Wilt,bacterial wilt,generic disease alias
+Black Spot,black spot,generic disease alias
+Fungal Storage Rot,fungal storage rot,generic disease alias
+Fungal Storage Rot,storage rot,generic disease alias
+Mold/Fungal Contamination,mold fungal contamination,generic disease alias
+Mold/Fungal Contamination,mould fungal contamination,UK spelling alias
+Mold/Fungal Contamination,mold,common dataset alias
+Mold/Fungal Contamination,mould,common dataset alias

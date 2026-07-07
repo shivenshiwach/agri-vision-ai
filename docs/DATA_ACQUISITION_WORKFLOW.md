@@ -39,7 +39,7 @@ On the training server:
 3. Confirm source licenses, URLs, class mappings, and annotation formats.
 4. Enable real download code only after approval.
 
-The current `scripts/download_sources.py` intentionally refuses real downloads.
+The current `scripts/download_sources.py` only performs real downloads for sources with approved downloader code and an explicit `--confirm` flag. Other sources remain dry-run planning entries until reviewed.
 
 ## 4. Server Dataset Download
 
@@ -53,6 +53,10 @@ datasets/
     plantvillage/
     ip102/
     plantdoc/
+    plantdoc_plus/
+    plantnet_disease/
+    kaggle_field_diseases/
+    custom_field_diseases/
     roboflow/
     inaturalist/
     open_images/
@@ -66,6 +70,14 @@ Each downloaded source should have recorded metadata:
 - class mapping notes
 - annotation format
 - known quality issues
+
+Before combining disease classification sources, run:
+
+```bash
+python scripts/inspect_disease_datasets.py --dry-run
+```
+
+This uses `configs/disease_dataset_registry.yaml` and `data/taxonomy/disease_label_aliases.csv` to report original labels, normalized labels, image counts, duplicate labels, unmapped labels, and missing canonical disease labels.
 
 ## 5. YOLO Preparation
 

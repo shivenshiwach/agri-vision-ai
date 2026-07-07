@@ -72,6 +72,30 @@ Default output:
 datasets/processed/full_plantvillage_classifier
 ```
 
+## Multi-Dataset Disease Preparation
+
+Milestone 13 adds a separate dry-run-first preparation path for disease datasets. It does not train models, modify API files, or change the full PlantVillage pipeline.
+
+- Registry: `configs/disease_dataset_registry.yaml`
+- Label aliases: `data/taxonomy/disease_label_aliases.csv`
+- Inspector: `scripts/inspect_disease_datasets.py`
+- Optional normalized-copy builder: `scripts/build_multi_disease_classifier_dataset.py`
+- Guide: `docs/MULTI_DATASET_DISEASE_PREP.md`
+
+Inspect enabled disease sources and normalization coverage:
+
+```bash
+python scripts/inspect_disease_datasets.py --dry-run
+```
+
+Preview the normalized staging dataset:
+
+```bash
+python scripts/build_multi_disease_classifier_dataset.py --dry-run
+```
+
+No images are copied unless the builder is run with `--confirm`.
+
 ## Full PlantVillage Training
 
 - Training config: `configs/full_plantvillage_training.yaml`
@@ -131,6 +155,8 @@ python scripts/check_env.py
 pytest
 python scripts/train_image_classifier.py --help
 python scripts/evaluate_image_classifier.py --help
+python scripts/inspect_disease_datasets.py --help
+python scripts/build_multi_disease_classifier_dataset.py --help
 python -m compileall scripts
 git diff --check
 ```

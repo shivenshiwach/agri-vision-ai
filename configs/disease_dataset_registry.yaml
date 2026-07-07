@@ -1,0 +1,117 @@
+version: 1
+description: Multi-dataset disease classification preparation registry. This does not train models.
+taxonomy_path: configs/classes.yaml
+label_aliases_path: data/taxonomy/disease_label_aliases.csv
+output_root: datasets/processed/multi_disease_classifier
+image_extensions:
+  - .jpg
+  - .jpeg
+  - .png
+  - .bmp
+  - .tif
+  - .tiff
+  - .webp
+
+datasets:
+  plantvillage:
+    enabled: true
+    name: PlantVillage
+    root: datasets/raw/plantvillage/raw/color
+    dataset_type: image_classification
+    source_kind: controlled_leaf_images
+    license_review_required: true
+    notes: Existing full PlantVillage pipeline remains separate and unchanged.
+    discovery:
+      type: class_folders
+      class_roots:
+        - .
+
+  plantdoc:
+    enabled: true
+    name: PlantDoc
+    root: datasets/raw/plantdoc
+    dataset_type: image_classification_or_detection
+    source_kind: field_leaf_images
+    license_review_required: true
+    notes: Configure class_roots to match the approved PlantDoc export layout.
+    discovery:
+      type: class_folders
+      class_roots:
+        - .
+        - train
+        - test
+        - val
+        - valid
+        - validation
+
+  plantdoc_plus:
+    enabled: true
+    name: PlantDoc++
+    root: datasets/raw/plantdoc_plus
+    dataset_type: image_classification_or_detection
+    source_kind: field_leaf_images
+    license_review_required: true
+    notes: Placeholder for an approved PlantDoc++ export after source and license review.
+    discovery:
+      type: class_folders
+      class_roots:
+        - .
+        - train
+        - test
+        - val
+        - valid
+        - validation
+
+  plantnet:
+    enabled: true
+    name: PlantNet Disease Export
+    root: datasets/raw/plantnet_disease
+    dataset_type: image_classification
+    source_kind: curated_public_export
+    license_review_required: true
+    notes: Use only disease-labeled PlantNet exports; generic species folders should not be mixed into disease training.
+    discovery:
+      type: class_folders
+      class_roots:
+        - .
+        - train
+        - test
+        - val
+        - valid
+        - validation
+
+  kaggle_field_diseases:
+    enabled: true
+    name: Kaggle Field Disease Datasets
+    root: datasets/raw/kaggle_field_diseases
+    dataset_type: image_classification
+    source_kind: third_party_field_exports
+    license_review_required: true
+    notes: Put approved Kaggle disease exports under this root or add explicit registry entries per dataset/version.
+    discovery:
+      type: class_folders
+      class_roots:
+        - .
+        - train
+        - test
+        - val
+        - valid
+        - validation
+
+  custom_field_diseases:
+    enabled: true
+    name: Custom Field Disease Collection
+    root: datasets/raw/custom_field_diseases
+    dataset_type: image_classification
+    source_kind: local_field_collection
+    license_review_required: false
+    notes: Project-owned field images can be staged here after consent and data-quality review.
+    discovery:
+      type: class_folders
+      class_roots:
+        - .
+        - train
+        - test
+        - val
+        - valid
+        - validation

@@ -41,7 +41,64 @@ sources:
     license_review_required: true
     download_enabled: false
     source_url: "TBD - pending official URL and license approval"
+    output_path: "datasets/raw/plantdoc"
     notes: "Useful for more realistic crop images than lab-only datasets. Review annotation format and label quality before enabling downloads."
+  plantdoc_plus:
+    name: PlantDoc++
+    type: public_field_image_dataset
+    dataset_type: image_classification_or_detection
+    download_method: not_supported
+    planned_for:
+      - multi-dataset disease classification preparation
+      - crop disease field-image validation
+      - label normalization research
+    license_review_required: true
+    download_enabled: false
+    source_url: "TBD - pending official URL and license approval"
+    output_path: "datasets/raw/plantdoc_plus"
+    notes: "Add only an approved export/version. Confirm whether labels are classification folders, detection annotations, or both before use."
+  plantnet:
+    name: PlantNet Disease Export
+    type: public_or_curated_disease_dataset
+    dataset_type: image_classification
+    download_method: not_supported
+    planned_for:
+      - disease label coverage expansion
+      - multi-dataset disease classification preparation
+      - field-like disease imagery research
+    license_review_required: true
+    download_enabled: false
+    source_url: "TBD - pending approved PlantNet disease export and license review"
+    output_path: "datasets/raw/plantnet_disease"
+    notes: "Use only disease-labeled exports. Do not mix generic species-recognition folders into the disease classifier."
+  kaggle_field_diseases:
+    name: Kaggle Field Disease Datasets
+    type: public_dataset_portal_exports
+    dataset_type: image_classification
+    download_method: not_supported
+    planned_for:
+      - multi-dataset disease classification preparation
+      - field-image disease coverage
+      - class imbalance and label normalization research
+    license_review_required: true
+    download_enabled: false
+    source_url: "TBD - per-dataset Kaggle URL and license review required"
+    output_path: "datasets/raw/kaggle_field_diseases"
+    notes: "Each Kaggle export must record URL, version/date, license, class layout, and known label-quality issues."
+  custom_field_diseases:
+    name: Custom Field Disease Collection
+    type: project_owned_field_dataset
+    dataset_type: image_classification
+    download_method: local_staging
+    planned_for:
+      - project-owned disease classification data
+      - Maharashtra field-condition validation
+      - missing class coverage
+    license_review_required: false
+    download_enabled: false
+    source_url: "local collection"
+    output_path: "datasets/raw/custom_field_diseases"
+    notes: "Stage only consented project-owned images. Keep raw images out of Git and inspect labels before any training."
   roboflow:
     name: Roboflow
     type: public_dataset_portal

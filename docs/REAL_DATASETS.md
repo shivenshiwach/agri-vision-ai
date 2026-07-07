@@ -43,6 +43,26 @@ Limitations:
 - Farm damage symptoms may still require custom Maharashtra field annotations.
 - The downloader requires `gdown` on the training server for the official Google Drive folder.
 
+## Disease Dataset Expansion
+
+Additional disease-classification sources are configured for dry-run planning and local inspection:
+
+| Source key | Intended local path | Status |
+| --- | --- | --- |
+| `plantdoc` | `datasets/raw/plantdoc` | Dry-run source entry and registry support. Real download not implemented. |
+| `plantdoc_plus` | `datasets/raw/plantdoc_plus` | Dry-run source entry and registry support. Real download not implemented. |
+| `plantnet` | `datasets/raw/plantnet_disease` | Registry support for approved disease-labeled exports only. |
+| `kaggle_field_diseases` | `datasets/raw/kaggle_field_diseases` | Registry support for approved per-dataset Kaggle exports. |
+| `custom_field_diseases` | `datasets/raw/custom_field_diseases` | Local staging support for project-owned field images. |
+
+Use the milestone 13 inspector before any training decision:
+
+```bash
+python scripts/inspect_disease_datasets.py --dry-run
+```
+
+The inspector reports original labels, normalized labels, image counts, duplicate labels, unmapped labels, and missing canonical disease labels. The optional normalized-copy builder is dry-run by default and copies images only with `--confirm`.
+
 ## Safety Rules
 
 - Dry-run first:
@@ -50,6 +70,7 @@ Limitations:
 ```bash
 python scripts/download_sources.py --source plantvillage --dry-run
 python scripts/download_sources.py --source ip102 --dry-run
+python scripts/download_sources.py --source plantdoc --dry-run
 ```
 
 - Download only on an approved server after license and storage checks.
