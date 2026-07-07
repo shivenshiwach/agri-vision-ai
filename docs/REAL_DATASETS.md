@@ -77,3 +77,22 @@ python scripts/download_sources.py --source plantdoc --dry-run
 - Keep `datasets/` out of Git.
 - If a destination already exists, the downloader asks before overwriting it.
 - Run `python scripts/dataset_inventory.py` after downloads to summarize local dataset folders.
+
+## Required Source Metadata Before Confirmed Download
+
+Before any `--confirm` download or local staging action, record the source review in docs or a tracked manifest. Minimum required fields:
+
+| Field | Required detail |
+| --- | --- |
+| Source name | Human-readable dataset name and source key. |
+| Official URL | Original download or repository URL. |
+| Reference URL | Dataset card, paper, repository, or documentation link. |
+| Version | Git commit, release tag, export date, archive checksum, or access date when no version exists. |
+| License | License name, usage restrictions, redistribution limits, and commercial-use status. |
+| Approved use | Classification, detection, validation-only, pretraining, or research-only. |
+| Local path | Ignored path under `datasets/raw/...` or another approved external mount. |
+| Label mapping | Mapping notes from source labels to project taxonomy or YOLO class IDs. |
+| Annotation format | Class folders, YOLO txt, VOC XML, COCO JSON, segmentation masks, or mixed format. |
+| Known risks | Duplicates, class imbalance, lab-only images, weak field realism, missing labels, or license uncertainty. |
+
+If any required field is unknown, keep the source in dry-run or local-inspection mode only.

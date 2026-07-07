@@ -22,6 +22,17 @@ def count_classes(names) -> int:
     return 0
 
 
+def resolve_dataset_root(config_path: Path, config: dict) -> Path:
+    root_value = config.get("path")
+    if not root_value:
+        return config_path.parent.resolve()
+
+    root = Path(root_value)
+    if root.is_absolute():
+        return root
+    return (Path.cwd() / root).resolve()
+
+
 def resolve_split_path(config_path: Path, config: dict, split: str) -> Path | None:
     split_value = config.get(split)
     if not split_value:
@@ -29,10 +40,7 @@ def resolve_split_path(config_path: Path, config: dict, split: str) -> Path | No
     if isinstance(split_value, list):
         raise ValueError(f"{split} must be a directory path, not a list")
 
-    root = Path(config.get("path", config_path.parent))
-    if not root.is_absolute():
-        root = (config_path.parent / root).resolve()
-
+    root = resolve_dataset_root(config_path, config)
     split_path = Path(split_value)
     if split_path.is_absolute():
         return split_path
@@ -159,6 +167,7 @@ def main() -> None:
         total_labels += label_count
 
     print(f"Dataset YAML: {args.dataset_yaml}")
+    print(f"Dataset root: {resolve_dataset_root(args.dataset_yaml, config)}")
     print(f"Classes: {class_count}")
     print(f"Images found: {total_images}")
     print(f"Label files checked: {total_labels}")
