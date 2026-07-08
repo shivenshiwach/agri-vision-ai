@@ -12,6 +12,9 @@ import yaml
 DEFAULT_REGISTRY_PATH = Path("configs/crop_land_dataset_registry.yaml")
 DEFAULT_IMAGE_EXTENSIONS = {".jpg", ".jpeg", ".png", ".bmp", ".tif", ".tiff", ".webp"}
 SPLIT_DIR_NAMES = {"train", "test", "val", "valid", "validation"}
+MAX_OUTPUT_IMAGE_NAME_LENGTH = 120
+OUTPUT_IMAGE_HASH_LENGTH = 12
+OUTPUT_IMAGE_COMPONENT_LENGTH = 40
 
 
 @dataclass
@@ -91,6 +94,11 @@ def normalize_key(value: str) -> str:
 def safe_slug(value: str) -> str:
     slug = re.sub(r"[^A-Za-z0-9._-]+", "_", value.strip())
     return slug.strip("._-") or "label"
+
+
+def short_slug(value: str, max_length: int = OUTPUT_IMAGE_COMPONENT_LENGTH) -> str:
+    slug = safe_slug(value)
+    return slug[:max_length].rstrip("._-") or "label"
 
 
 def load_scene_labels(taxonomy_path: Path) -> list[SceneLabel]:
@@ -375,7 +383,24 @@ def iter_row_images(row: ReportRow, image_extensions: set[str] | None = None) ->
     return pairs
 
 
-def output_image_name(source_key: str, original_label: str, class_dir: Path, image_path: Path) -> str:
+def output_image_name(
+    source_key: str,
+    original_label: str,
+    normalized_label: str,
+    split: str,
+    class_dir: Path,
+    image_path: Path,
+) -> str:
     relative = image_path.relative_to(class_dir).as_posix()
-    digest = hashlib.sha1(f"{source_key}/{original_label}/{class_dir}/{relative}".encode("utf-8")).hexdigest()[:12]
-    return f"{safe_slug(source_key)}__{safe_slug(original_label)}__{digest}__{safe_slug(image_path.name)}"
+    hash_input = f"{source_key}/{normalized_label}/{split}/{original_label}/{class_dir}/{relative}"
+    digest = hashlib.sha1(hash_input.encode("utf-8")).hexdigest()[:OUTPUT_IMAGE_HASH_LENGTH]
+    extension = image_path.suffix.lower()
+    filename = (
+        f"{short_slug(source_key)}__"
+        f"{short_slug(normalized_label)}__"
+        f"{short_slug(split, 16)}__"
+        f"{digest}{extension}"
+    )
+    if len(filename) > MAX_OUTPUT_IMAGE_NAME_LENGTH:
+        raise ValueError(f"Generated crop/land image filename is too long: {filename}")
+    return filename

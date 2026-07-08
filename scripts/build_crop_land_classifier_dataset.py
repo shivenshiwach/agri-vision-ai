@@ -202,7 +202,14 @@ def copy_images(output_root: Path, planned_images: list[PlannedImage]) -> int:
             row = planned_image.row
             assert row.normalized_label is not None
             destination_dir = output_root / planned_image.split / class_dir_name(row.normalized_label)
-            destination = destination_dir / output_image_name(row.source_key, row.original_label, planned_image.class_dir, planned_image.image_path)
+            destination = destination_dir / output_image_name(
+                row.source_key,
+                row.original_label,
+                row.normalized_label,
+                planned_image.split,
+                planned_image.class_dir,
+                planned_image.image_path,
+            )
             if destination.exists():
                 raise FileExistsError(f"Refusing to overwrite existing file: {destination}")
             shutil.copy2(planned_image.image_path, destination)
