@@ -1,0 +1,298 @@
+version: 1
+description: Crop/land scene classification dataset registry. This scaffold inspects and stages class-folder datasets only; it does not download datasets or train models.
+taxonomy_path: data/taxonomy/crop_land_scenes.csv
+crop_taxonomy_path: data/taxonomy/crops.csv
+output_root: datasets/processed/crop_land_classifier
+val_ratio: 0.2
+seed: 42
+image_extensions:
+  - .jpg
+  - .jpeg
+  - .png
+  - .bmp
+  - .tif
+  - .tiff
+  - .webp
+
+datasets:
+  custom_farmer_crop_land:
+    enabled: true
+    name: Custom Farmer Crop/Land Collection
+    root: datasets/raw/custom_crop_land
+    dataset_type: image_classification
+    source_kind: project_owned_ground_images
+    license_review_required: false
+    approved_for_training_now: true
+    official_url: local project-owned collection
+    license: project-owned or consented images only
+    notes: First recommended source for real farmer-upload crop/land scene behavior. Stage as class folders matching the canonical labels before building.
+    discovery:
+      type: class_folders
+      class_roots:
+        - .
+        - train
+        - val
+        - valid
+        - validation
+        - test
+    label_mappings:
+      crop closeup: crop_closeup
+      crop_closeup: crop_closeup
+      closeup crop: crop_closeup
+      plant closeup: crop_closeup
+      crop field: crop_field
+      crop_field: crop_field
+      agriculture field: crop_field
+      farmland crop: crop_field
+      bare soil: bare_soil_empty_land
+      bare_soil_empty_land: bare_soil_empty_land
+      empty land: bare_soil_empty_land
+      fallow land: bare_soil_empty_land
+      weed field: weed_dominant_field
+      weed_dominant_field: weed_dominant_field
+      weeds: weed_dominant_field
+      harvested field: harvested_field
+      harvested_field: harvested_field
+      stubble field: harvested_field
+      waterlogged: waterlogged_land
+      waterlogged_land: waterlogged_land
+      standing water: waterlogged_land
+      flooded field: waterlogged_land
+      non agricultural: non_agricultural_land
+      non_agricultural_land: non_agricultural_land
+      non farm: non_agricultural_land
+      road: non_agricultural_land
+      building: non_agricultural_land
+      unknown: unknown_or_unclear
+      unknown_or_unclear: unknown_or_unclear
+      unclear: unknown_or_unclear
+      blurry: unknown_or_unclear
+
+  plantdoc_crop_visible:
+    enabled: false
+    name: PlantDoc Cropped Classification Images
+    root: datasets/raw/plantdoc
+    dataset_type: image_classification
+    source_kind: public_ground_crop_images
+    license_review_required: true
+    approved_for_training_now: false
+    official_url: https://github.com/pratikkayal/PlantDoc-Dataset
+    license: Creative Commons Attribution 4.0 International
+    notes: Useful for crop_closeup and later crop-label references, not for full land-scene coverage. Enable only after approved source/version capture.
+    discovery:
+      type: class_folders
+      class_roots:
+        - .
+        - train
+        - test
+        - val
+        - valid
+        - validation
+    label_mappings:
+      crop_closeup: crop_closeup
+      crop closeup: crop_closeup
+      plant: crop_closeup
+      leaf: crop_closeup
+
+  deepweeds:
+    enabled: false
+    name: DeepWeeds
+    root: datasets/raw/deepweeds_crop_land
+    dataset_type: image_classification
+    source_kind: public_ground_weed_images
+    license_review_required: true
+    approved_for_training_now: false
+    official_url: https://github.com/AlexOlsen/DeepWeeds
+    license: Images and annotations CC BY 4.0; repository code Apache-2.0
+    notes: Weed species closeups can support weed_dominant_field only after manual staging and review. It is not an Indian farmer-field dataset.
+    discovery:
+      type: class_folders
+      class_roots:
+        - .
+        - train
+        - test
+        - val
+        - valid
+        - validation
+    label_mappings:
+      weed: weed_dominant_field
+      weeds: weed_dominant_field
+      weed_dominant_field: weed_dominant_field
+
+  open_images_v7_crop_land_sample:
+    enabled: false
+    name: Open Images V7 Crop/Land Sample
+    root: datasets/raw/open_images_crop_land
+    dataset_type: image_classification
+    source_kind: public_generic_ground_images
+    license_review_required: true
+    approved_for_training_now: false
+    official_url: https://storage.googleapis.com/openimages/web/index.html
+    license: Annotations CC BY 4.0; listed images CC BY 2.0 with per-image verification required
+    notes: Useful for generic negative and crop-related samples only after human-verified label filtering and per-image license checks.
+    discovery:
+      type: class_folders
+      class_roots:
+        - .
+        - train
+        - test
+        - val
+        - valid
+        - validation
+    label_mappings:
+      crop_closeup: crop_closeup
+      crop_field: crop_field
+      bare_soil_empty_land: bare_soil_empty_land
+      weed_dominant_field: weed_dominant_field
+      harvested_field: harvested_field
+      waterlogged_land: waterlogged_land
+      non_agricultural_land: non_agricultural_land
+      unknown_or_unclear: unknown_or_unclear
+
+  agriculture_vision:
+    enabled: false
+    name: Agriculture-Vision
+    root: datasets/raw/agriculture_vision_crop_land
+    dataset_type: semantic_segmentation_masks_to_classification
+    source_kind: public_aerial_farmland_anomaly_dataset
+    license_review_required: true
+    approved_for_training_now: false
+    official_url: https://www.agriculture-vision.com/agriculture-vision-2020/dataset
+    license: Restricted challenge terms; internal non-commercial academic use only
+    notes: Aerial proxy for weed cluster and standing water. Requires manual approval and conversion from masks to class folders before this registry can inspect it.
+    discovery:
+      type: class_folders
+      class_roots:
+        - .
+        - train
+        - val
+        - test
+    label_mappings:
+      standing water: waterlogged_land
+      waterway: waterlogged_land
+      weed cluster: weed_dominant_field
+      planter skip: bare_soil_empty_land
+
+  eurosat:
+    enabled: false
+    name: EuroSAT
+    root: datasets/raw/eurosat_crop_land
+    dataset_type: satellite_image_classification
+    source_kind: public_remote_sensing_land_cover
+    license_review_required: true
+    approved_for_training_now: false
+    official_url: https://github.com/phelber/eurosat
+    license: MIT
+    notes: Satellite land-cover proxy only. Do not mix directly with farmer phone images without a separate experiment flag.
+    discovery:
+      type: class_folders
+      class_roots:
+        - .
+    label_mappings:
+      AnnualCrop: crop_field
+      PermanentCrop: crop_field
+      Pasture: crop_field
+      HerbaceousVegetation: weed_dominant_field
+      Residential: non_agricultural_land
+      Industrial: non_agricultural_land
+      Highway: non_agricultural_land
+      River: non_agricultural_land
+      SeaLake: non_agricultural_land
+      Forest: non_agricultural_land
+
+  loveda:
+    enabled: false
+    name: LoveDA
+    root: datasets/raw/loveda_crop_land
+    dataset_type: semantic_segmentation_masks_to_classification
+    source_kind: public_remote_sensing_land_cover
+    license_review_required: true
+    approved_for_training_now: false
+    official_url: https://github.com/Junjue-Wang/LoveDA
+    license: Academic use only; commercial use prohibited
+    notes: Remote-sensing proxy for agriculture barren water and non-agricultural land. Requires mask-to-tile conversion before use.
+    discovery:
+      type: class_folders
+      class_roots:
+        - .
+        - train
+        - val
+        - test
+    label_mappings:
+      agriculture: crop_field
+      barren: bare_soil_empty_land
+      water: waterlogged_land
+      building: non_agricultural_land
+      road: non_agricultural_land
+      forest: non_agricultural_land
+
+  landcover_ai:
+    enabled: false
+    name: LandCover.ai
+    root: datasets/raw/landcover_ai_crop_land
+    dataset_type: semantic_segmentation_masks_to_classification
+    source_kind: public_aerial_land_cover
+    license_review_required: true
+    approved_for_training_now: false
+    official_url: https://landcover.ai.linuxpolska.com/
+    license: CC BY-NC-SA 4.0
+    notes: Aerial proxy for water and non-agricultural labels. It lacks crop-specific classes and is non-commercial.
+    discovery:
+      type: class_folders
+      class_roots:
+        - .
+        - train
+        - val
+        - test
+    label_mappings:
+      water: waterlogged_land
+      building: non_agricultural_land
+      road: non_agricultural_land
+      woodland: non_agricultural_land
+
+  floodnet:
+    enabled: false
+    name: FloodNet
+    root: datasets/raw/floodnet_crop_land
+    dataset_type: semantic_segmentation_masks_to_classification
+    source_kind: public_uav_flood_scene_dataset
+    license_review_required: true
+    approved_for_training_now: false
+    official_url: https://github.com/BinaLab/FloodNet-Supervised_v1.0
+    license: Community Data License Agreement - Permissive
+    notes: UAV flood data can support water/flood visual features only as an auxiliary proxy, not crop-field-specific waterlogging.
+    discovery:
+      type: class_folders
+      class_roots:
+        - .
+        - train
+        - val
+        - test
+    label_mappings:
+      water: waterlogged_land
+      road flooded: waterlogged_land
+      building flooded: waterlogged_land
+      road non-flooded: non_agricultural_land
+      building non-flooded: non_agricultural_land
+
+  agml_inatag:
+    enabled: false
+    name: iNatAg via AgML
+    root: datasets/raw/agml_inatag_crop_land
+    dataset_type: image_classification
+    source_kind: public_crop_and_weed_species_images
+    license_review_required: true
+    approved_for_training_now: false
+    official_url: https://github.com/Project-AgML/AgML
+    license: AgML code is Apache-2.0; underlying iNaturalist image licenses require per-export review
+    notes: Best candidate for later crop and weed species prediction, but not enabled until image-license export rules are documented.
+    discovery:
+      type: class_folders
+      class_roots:
+        - .
+        - train
+        - val
+        - test
+    label_mappings:
+      crop_closeup: crop_closeup
+      weed_dominant_field: weed_dominant_field

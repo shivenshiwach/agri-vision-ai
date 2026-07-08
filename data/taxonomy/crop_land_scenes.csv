@@ -1,0 +1,9 @@
+label,display_name,category,description,route_to_disease_model,custom_data_required,notes
+crop_closeup,Crop closeup,crop_land_scene,Close view of crop plant leaves stems fruit or canopy where crop tissue is the main subject,yes,yes,Useful before disease and pest analysis when plant parts are visible.
+crop_field,Crop field,crop_land_scene,Wider field scene where a cultivated crop stand is visible,no,yes,May route to crop identification later but not directly to leaf disease inference.
+bare_soil_empty_land,Bare soil or empty land,crop_land_scene,Mostly bare prepared soil fallow plot or empty agricultural land with no dominant crop canopy,no,yes,Public ground-level coverage is weak; project field images are required.
+weed_dominant_field,Weed dominant field,crop_land_scene,Field or plot where weeds or unwanted vegetation dominate the scene,no,yes,Public weed datasets are useful only as auxiliary data because most are species closeups.
+harvested_field,Harvested field,crop_land_scene,Post-harvest field with stubble residue cut crop rows or cleared crop remnants,no,yes,Requires custom ground-level farmer images.
+waterlogged_land,Waterlogged land,crop_land_scene,Agricultural land with standing water flood stress or saturated field conditions,no,yes,Public aerial flood data is only a proxy; local field images are needed.
+non_agricultural_land,Non-agricultural land,crop_land_scene,Scene dominated by roads buildings vehicles indoor areas forest or other non-farm context,no,yes,Use as a negative class to prevent forced farm predictions.
+unknown_or_unclear,Unknown or unclear,crop_land_scene,Image is too blurry dark occluded ambiguous or outside the known taxonomy,no,yes,Should be used for low-confidence or unreadable inputs.
