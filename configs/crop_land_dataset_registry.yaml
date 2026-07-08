@@ -1,5 +1,5 @@
 version: 1
-description: Crop/land scene classification dataset registry. This scaffold inspects and stages class-folder datasets only; it does not download datasets or train models.
+description: Crop/land scene classification dataset registry. This scaffold inspects and stages class-folder datasets only; public source downloads are dry-run-first and training remains explicit.
 taxonomy_path: data/taxonomy/crop_land_scenes.csv
 crop_taxonomy_path: data/taxonomy/crops.csv
 output_root: datasets/processed/crop_land_classifier
@@ -68,26 +68,21 @@ datasets:
       unclear: unknown_or_unclear
       blurry: unknown_or_unclear
 
-  plantdoc_crop_visible:
+  plantdoc_crop_land:
     enabled: false
-    name: PlantDoc Cropped Classification Images
-    root: datasets/raw/plantdoc
+    name: PlantDoc Crop/Land Closeup Staging
+    root: datasets/raw/plantdoc_crop_land
     dataset_type: image_classification
     source_kind: public_ground_crop_images
     license_review_required: true
     approved_for_training_now: false
     official_url: https://github.com/pratikkayal/PlantDoc-Dataset
     license: Creative Commons Attribution 4.0 International
-    notes: Useful for crop_closeup and later crop-label references, not for full land-scene coverage. Enable only after approved source/version capture.
+    notes: Downloader stages official PlantDoc train/test images under crop_closeup. Useful for crop_closeup only, not full land-scene coverage. Keep disabled unless running an explicit proxy experiment.
     discovery:
       type: class_folders
       class_roots:
         - .
-        - train
-        - test
-        - val
-        - valid
-        - validation
     label_mappings:
       crop_closeup: crop_closeup
       crop closeup: crop_closeup
@@ -104,16 +99,11 @@ datasets:
     approved_for_training_now: false
     official_url: https://github.com/AlexOlsen/DeepWeeds
     license: Images and annotations CC BY 4.0; repository code Apache-2.0
-    notes: Weed species closeups can support weed_dominant_field only after manual staging and review. It is not an Indian farmer-field dataset.
+    notes: Downloader stages non-negative weed species under weed_dominant_field and leaves DeepWeeds negative rows in an unmapped review folder. It is Australia-specific auxiliary data, not an Indian farmer-field dataset.
     discovery:
       type: class_folders
       class_roots:
         - .
-        - train
-        - test
-        - val
-        - valid
-        - validation
     label_mappings:
       weed: weed_dominant_field
       weeds: weed_dominant_field
@@ -183,7 +173,7 @@ datasets:
     approved_for_training_now: false
     official_url: https://github.com/phelber/eurosat
     license: MIT
-    notes: Satellite land-cover proxy only. Do not mix directly with farmer phone images without a separate experiment flag.
+    notes: Downloader extracts the official Zenodo RGB archive into class folders. Satellite land-cover proxy only; do not mix directly with farmer phone images without a separate experiment flag.
     discovery:
       type: class_folders
       class_roots:

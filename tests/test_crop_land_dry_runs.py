@@ -28,8 +28,8 @@ def test_crop_land_builder_dry_run_does_not_copy_files():
 
 
 def test_crop_land_builder_rejects_disabled_dataset_without_override():
-    result = run_script("scripts/build_crop_land_classifier_dataset.py", "--dataset", "plantdoc_crop_visible", "--dry-run")
+    result = run_script("scripts/build_crop_land_classifier_dataset.py", "--dataset", "plantdoc_crop_land", "--dry-run")
 
     assert result.returncode == 1
-    assert "Dataset key(s) are disabled: plantdoc_crop_visible" in result.stdout
+    assert "Dataset key(s) are disabled: plantdoc_crop_land" in result.stdout
     assert "Pass --include-disabled" in result.stdout

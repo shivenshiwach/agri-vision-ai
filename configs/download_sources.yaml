@@ -29,6 +29,57 @@ sources:
     reference_url: "https://github.com/xpwu95/IP102"
     output_path: "datasets/raw/ip102"
     notes: "Official IP102 v1.1 Google Drive folder linked from the project repository. Requires gdown for folder download."
+  eurosat:
+    name: EuroSAT RGB
+    type: public_remote_sensing_land_cover_dataset
+    dataset_type: satellite_image_classification_class_folders
+    download_method: zenodo_zip_extract_class_folders
+    planned_for:
+      - crop vs non-crop remote-sensing sanity check
+      - agriculture/non-agriculture land-cover proxy experiment
+      - separate crop/land proxy baseline only
+    license_review_required: true
+    download_enabled: true
+    version: "Zenodo record 7711810 v2, published 2018-07-22"
+    license: "MIT; Copernicus Sentinel data terms also apply"
+    source_url: "https://zenodo.org/records/7711810/files/EuroSAT_RGB.zip?download=1"
+    reference_url: "https://github.com/phelber/EuroSAT"
+    output_path: "datasets/raw/eurosat_crop_land"
+    notes: "Official Zenodo RGB archive. Downloader extracts class folders for the disabled EuroSAT crop/land registry entry. Satellite imagery is a proxy only and should not be mixed with farmer phone images without an explicit experiment note."
+  deepweeds:
+    name: DeepWeeds Crop/Land Staging
+    type: public_ground_weed_dataset
+    dataset_type: image_classification_staged_to_crop_land_class_folders
+    download_method: gdown_file_and_label_staging
+    planned_for:
+      - weed_dominant_field auxiliary proxy
+      - negative weed review samples after human approval
+      - separate crop/land proxy baseline only
+    license_review_required: true
+    download_enabled: true
+    version: "Official GitHub labels plus images.zip linked from the DeepWeeds repository"
+    license: "Images and annotations CC BY 4.0; repository code Apache-2.0"
+    source_url: "https://drive.google.com/file/d/1xnK3B6K6KekDI55vwJ0vnc2IGoDga9cj"
+    reference_url: "https://github.com/AlexOlsen/DeepWeeds"
+    output_path: "datasets/raw/deepweeds_crop_land"
+    notes: "Downloader fetches the official images.zip with gdown, fetches labels.csv from the official GitHub repository, stages non-negative species as weed_dominant_field, and leaves negative rows in an unmapped review folder."
+  plantdoc_crop_land:
+    name: PlantDoc Crop/Land Closeup Staging
+    type: public_field_crop_closeup_dataset
+    dataset_type: image_classification_staged_to_crop_land_class_folders
+    download_method: git_clone_and_stage_crop_closeup
+    planned_for:
+      - crop_closeup auxiliary proxy
+      - crop-visible field-image sanity check
+      - separate crop/land proxy baseline only
+    license_review_required: true
+    download_enabled: true
+    version: "Official GitHub repository snapshot at download time"
+    license: "Creative Commons Attribution 4.0 International"
+    source_url: "https://github.com/pratikkayal/PlantDoc-Dataset.git"
+    reference_url: "https://github.com/pratikkayal/PlantDoc-Dataset"
+    output_path: "datasets/raw/plantdoc_crop_land"
+    notes: "Downloader clones the official PlantDoc repository and stages all train/test images under crop_closeup for scene-classifier experiments only. It does not provide land-scene classes."
   plantdoc:
     name: PlantDoc
     type: public_field_image_dataset

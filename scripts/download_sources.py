@@ -4,6 +4,7 @@ from pathlib import Path
 
 import yaml
 
+import download_crop_land_sources
 import download_ip102
 import download_plantvillage
 
@@ -12,6 +13,9 @@ CONFIG_PATH = Path("configs/download_sources.yaml")
 SUPPORTED_SOURCES = (
     "plantvillage",
     "ip102",
+    "eurosat",
+    "deepweeds",
+    "plantdoc_crop_land",
     "plantdoc",
     "plantdoc_plus",
     "plantnet",
@@ -24,6 +28,9 @@ SUPPORTED_SOURCES = (
 CONFIRMED_DOWNLOADERS = {
     "plantvillage": download_plantvillage.download,
     "ip102": download_ip102.download,
+    "eurosat": download_crop_land_sources.download_eurosat,
+    "deepweeds": download_crop_land_sources.download_deepweeds,
+    "plantdoc_crop_land": download_crop_land_sources.download_plantdoc_crop_land,
 }
 
 
@@ -62,6 +69,10 @@ def print_dry_run(source_key: str, source_config: dict, destination: Path) -> No
     print(f"Download method: {source_config.get('download_method')}")
     print(f"Download enabled: {source_config.get('download_enabled')}")
     print(f"License review required: {source_config.get('license_review_required')}")
+    if source_config.get("version"):
+        print(f"Version: {source_config.get('version')}")
+    if source_config.get("license"):
+        print(f"License: {source_config.get('license')}")
     print(f"Source URL: {source_config.get('source_url')}")
     if source_config.get("reference_url"):
         print(f"Reference URL: {source_config.get('reference_url')}")
