@@ -1,6 +1,8 @@
 import csv
+import importlib.util
 import shutil
 import subprocess
+import sys
 import tempfile
 import urllib.request
 import zipfile
@@ -158,13 +160,16 @@ def download_eurosat(destination: Path, confirm: bool) -> int:
     return 0
 
 
-def require_gdown() -> str | None:
+def require_gdown() -> list[str] | None:
+    if importlib.util.find_spec("gdown") is not None:
+        return [sys.executable, "-m", "gdown"]
+
     gdown_path = shutil.which("gdown")
     if gdown_path is None:
         print("ERROR: gdown is required to download the official DeepWeeds Google Drive images archive.")
         print("Install it on the training server only after source approval: pip install gdown")
         return None
-    return gdown_path
+    return [gdown_path]
 
 
 def read_deepweeds_labels(labels_path: Path) -> list[dict[str, str]]:
@@ -212,8 +217,8 @@ def download_deepweeds(destination: Path, confirm: bool) -> int:
         print_direct_plan(DEEPWEEDS_NAME, destination, DEEPWEEDS_IMAGES_URL, DEEPWEEDS_REFERENCE_URL, "gdown images.zip, fetch official labels.csv, stage class folders")
         return 0
 
-    gdown_path = require_gdown()
-    if gdown_path is None:
+    gdown_command = require_gdown()
+    if gdown_command is None:
         return 1
     if not prepare_destination(destination):
         return 1
@@ -226,7 +231,7 @@ def download_deepweeds(destination: Path, confirm: bool) -> int:
 
         print(f"Downloading {DEEPWEEDS_NAME} images to temporary archive")
         print("Command: gdown <official DeepWeeds images.zip Google Drive file> -O <temporary archive>")
-        result = subprocess.run([gdown_path, DEEPWEEDS_IMAGES_URL, "-O", str(archive_path)], check=False)
+        result = subprocess.run([*gdown_command, DEEPWEEDS_IMAGES_URL, "-O", str(archive_path)], check=False)
         if result.returncode != 0:
             return result.returncode
 
